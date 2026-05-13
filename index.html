@@ -748,6 +748,7 @@
   let chatOpen  = false;
   let greeted   = false;
   let formShown = false;   // guard: only show form once per phone detection
+  let userDeclined = false; // user explicitly said no to booking
   let msgs = JSON.parse(sessionStorage.getItem("s5_chat_memory")) || [];
 
   // ── Extracted context from conversation ──────────────────────────
@@ -875,7 +876,8 @@
   // ── Booking readiness detection ─────────────────────────────────
   const BOOKING_TRIGGERS = [
     'book','appointment','schedule','reserve','slot','want to come','visit','register',
-    'confirm','my number','phone','10 digits','want to book','interested','fix'
+    'confirm','my number','phone','10 digits','want to book','interested','fix',
+    'book a slot','slot for me','book me','get me','reserve me'
   ];
 
   function shouldShowForm(botReply) {
@@ -895,6 +897,16 @@
       lower.includes('share your name') ||
       lower.includes('book your') ||
       lower.includes('confirm your') ||
+      lower.includes('would you like to book') ||
+      lower.includes('like to book') ||
+      lower.includes('shall i book') ||
+      lower.includes('want to book') ||
+      lower.includes('quick form') ||
+      lower.includes('fill in the form') ||
+      lower.includes('fill the form') ||
+      lower.includes('form below') ||
+      lower.includes('booking form') ||
+      lower.includes('fill in below') ||
       (lower.includes('name') && (lower.includes('confirm') || lower.includes('book') || lower.includes('appointment')))
     );
   }
@@ -906,6 +918,13 @@
 
   // ── Render booking form card inside chat ─────────────────────────
   function renderFormCard(data = {}, addToHistory = true) {
+    // Remove any existing form card first so we never have duplicates
+    const existing = document.getElementById('bookingFormCard');
+    if (existing) {
+      existing.closest('.msg').remove();
+      msgs = msgs.filter(m => m.type !== 'form');
+    }
+
     const service = data.service || detectedService || guessServiceFromHistory() || '';
     const name    = data.name    || detectedName    || guessNameFromHistory()    || '';
     const phone   = data.phone   || '';
@@ -1039,8 +1058,8 @@
     const text  = input.value.trim();
     if (!text) return;
 
-    // If user typed a phone number directly AND form is not yet shown → show form
-    if (containsPhone(text) && !formShown) {
+    // If user typed a phone number directly AND form is not visible → show form
+    if (containsPhone(text) && !formShown && !userDeclined) {
       input.value = '';
       const time = getTime();
       msgs.push({ role: 'user', text, time });
@@ -1080,9 +1099,23 @@
         content: m.text
       }));
 
-    // Detect booking intent triggers in the user's own message
     const lowerText = text.toLowerCase();
-    const userWantsToBook = BOOKING_TRIGGERS.some(t => lowerText.includes(t));
+
+    // Track if user explicitly declined booking
+    const userDismissed = /(no need|no booking|nono|no no|dont (want|need)|don't (want|need)|just (checking|asking|browsing|price|prices)|only (price|pricing|info|details)|not (now|yet|interested)|maybe later|skip|i said no)/i.test(lowerText);
+    if (userDismissed) { userDeclined = true; formShown = true; }
+
+    // Only unlock if user clearly re-engages with booking
+    // Re-interest: explicit booking words OR simple yes/ok/sure when bot offered booking
+    const lastBotMsg = msgs.filter(m => m.role === 'bot' && m.text).slice(-1)[0];
+    const lastBotOfferedBooking = lastBotMsg && /(book|appointment|schedule|confirm|would you like)/i.test(lastBotMsg.text);
+    const simpleAffirmative = /^(yes|yeah|yep|yup|sure|ok|okay|alright|sounds good|go ahead|please|do it|confirm)[.!,\s]*$/i.test(lowerText);
+    const userReInterested = /\b(book|booking|yes.*book|want.*book|ready to book|book now|book a slot|book me|book it|i want (a |to )?(haircut|facial|keratin|wax|bridal|spa|manicure|pedicure|appointment|slot)|im interested|i'm interested|yes.*appointment|take appointment|fix appointment|slot for me|make a booking|get me a slot|reserve a slot)\b/i.test(lowerText)
+      || (simpleAffirmative && lastBotOfferedBooking);
+    if (userReInterested) { userDeclined = false; }
+
+    // Detect booking intent — blocked if user declined
+    const userWantsToBook = !formShown && !userDeclined && BOOKING_TRIGGERS.some(t => lowerText.includes(t));
 
     try {
       const res  = await fetch(BACKEND_URL, {
@@ -1095,13 +1128,14 @@
 
       const reply = data.reply || "I'm here to help! 😊";
 
-      // Check if we should show the form
-      const formTrigger = !formShown && (shouldShowForm(reply) || userWantsToBook);
+      // Show form whenever bot says the quick form phrase — always, ignoring userDeclined
+      const botSaysForm = reply.includes('fill in the quick form below');
+      const formTrigger = botSaysForm || (!userDeclined && (shouldShowForm(reply) || userWantsToBook || userReInterested));
+      if (botSaysForm) userDeclined = false;
 
       addBotMsg(reply);
 
       if (formTrigger) {
-        formShown = true;
         detectedService = guessServiceFromHistory();
         detectedName    = guessNameFromHistory();
         setTimeout(() => {
@@ -1119,7 +1153,7 @@
   function clearChat() {
     if (!confirm("Clear this conversation?")) return;
     sessionStorage.removeItem("s5_chat_memory");
-    msgs = []; greeted = false; formShown = false;
+    msgs = []; greeted = false; formShown = false; userDeclined = false;
     detectedService = ''; detectedName = '';
     document.getElementById("chatMessages").innerHTML = "";
     setTimeout(() => {

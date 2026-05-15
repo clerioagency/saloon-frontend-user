@@ -1342,6 +1342,7 @@
     setTimeout(() => {
       if (!chatOpen) document.getElementById('fabNotif').style.display = 'block';
     }, 3000);
+    fetch('https://saloon-backend-so2b.onrender.com/ping').catch(() => {});
   });
 </script>
 </body>

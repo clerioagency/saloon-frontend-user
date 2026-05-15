@@ -1618,7 +1618,8 @@
             d.setDate(today.getDate() + i);
             const label = i === 0 ? 'Today' : i === 1 ? 'Tomorrow' : days[d.getDay()];
             const sub = d.getDate() + ' ' + months[d.getMonth()];
-            const iso = d.toISOString().slice(0, 10);
+            // const iso = d.toISOString().slice(0, 10);
+            const iso = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
             return `<button type="button" class="date-tab${i === 0 ? ' active' : ''}" onclick="selectDate(this,'${iso}')" data-iso="${iso}">
                   <span class="date-tab-day">${label}</span>
                   <span class="date-tab-sub">${sub}</span>
@@ -1626,7 +1627,7 @@
           }).join('');
         })()}
           </div>
-          <input type="hidden" id="bfDate" value="${new Date().toISOString().slice(0, 10)}" />
+          <input type="hidden" id="bfDate" value="${(() => { const n = new Date(); return n.getFullYear() + '-' + String(n.getMonth()+1).padStart(2,'0') + '-' + String(n.getDate()).padStart(2,'0'); })()}" />
         </div>
         <div class="booking-field">
           <span class="slot-picker-label" id="slotLabel">Available Slots — Today</span>
@@ -1705,7 +1706,8 @@
 
     async function renderSlots(selectedDate) {
       const grid = document.getElementById('slotGrid');
-      const today = new Date().toISOString().slice(0, 10);
+      const n = new Date();
+      const today = n.getFullYear() + '-' + String(n.getMonth()+1).padStart(2,'0') + '-' + String(n.getDate()).padStart(2,'0');
       const isToday = selectedDate === today;
       const now = new Date();
       const cutoff = new Date(now.getTime() + 30 * 60 * 1000);

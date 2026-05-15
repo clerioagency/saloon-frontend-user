@@ -520,6 +520,27 @@
     }
     .booking-field input::placeholder { color: var(--text-muted); opacity: 0.7; }
     .booking-field input:focus { border-color: var(--gold-dim); }
+    .date-tab-row {
+      display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px;
+    }
+    .date-tab {
+      flex: 1; min-width: 60px;
+      display: flex; flex-direction: column; align-items: center;
+      padding: 7px 6px; border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface2); cursor: pointer;
+      transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+    }
+    .date-tab:hover { border-color: var(--gold-dim); }
+    .date-tab.active {
+      border-color: var(--gold); background: rgba(201,169,110,0.1);
+    }
+    .date-tab-day {
+      font-size: 11px; font-weight: 600;
+      color: var(--text); letter-spacing: 0.5px;
+    }
+    .date-tab.active .date-tab-day { color: var(--gold); }
+    .date-tab-sub { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
     .booking-field input.prefilled {
       border-color: rgba(201,169,110,0.4);
       background: rgba(201,169,110,0.06);
@@ -564,6 +585,31 @@
     }
     .field-valid { border-color: rgba(76, 175, 80, 0.5) !important; }
     .field-err   { border-color: rgba(220, 80, 80, 0.6) !important; }
+
+    /* ── Slot picker ── */
+    .slot-picker-label {
+      display: block; font-size: 10px; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px;
+    }
+    .slot-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 11px;
+    }
+    .slot-btn {
+      padding: 7px 4px; border-radius: 7px; border: 1px solid var(--border);
+      background: var(--surface2); color: var(--text); font-size: 11px;
+      font-family: 'DM Sans', sans-serif; cursor: pointer; text-align: center;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+    .slot-btn.past {
+      opacity: 0.25;
+      cursor: not-allowed;
+      text-decoration: line-through;
+      border-color: transparent;
+    }
+    .slot-btn:hover:not(.booked):not(.selected) { border-color: var(--gold-dim); color: var(--gold); }
+    .slot-btn.selected { background: rgba(201,169,110,0.18); border-color: var(--gold); color: var(--gold); font-weight: 500; }
+    .slot-btn.booked   { background: rgba(220,80,80,0.07); border-color: rgba(220,80,80,0.25); color: rgba(154,132,114,0.5); cursor: not-allowed; text-decoration: line-through; font-size: 10px; }
+    .slot-err { font-size: 11px; color: #e05050; margin-top: -6px; margin-bottom: 8px; display: none; }
 
     /* ── FAB ── */
     .chat-fab {
@@ -741,9 +787,7 @@
 
 <script>
   const BACKEND_URL  = "http://localhost:8000/chat";
-  const BACKEND_CHAT = "http://localhost:8000/chat";   // chat endpoint
-  // For lead submission we POST directly to /leads-form (a new endpoint)
-  // or re-use the /chat endpoint with phone included — see submitBooking()
+  const LEADS_URL    = "http://localhost:8000/leads";
 
   let chatOpen  = false;
   let greeted   = false;
@@ -844,9 +888,13 @@
   ];
 
   function guessServiceFromHistory() {
-    const allText = msgs.filter(m => m.role === 'user').map(m => m.text.toLowerCase()).join(' ');
-    for (const svc of SERVICE_MAP) {
-      if (svc.keys.some(k => allText.includes(k))) return svc.label;
+    // Scan user messages in REVERSE so the most recent service mentioned wins
+    const userMsgs = msgs.filter(m => m.role === 'user').reverse();
+    for (const msg of userMsgs) {
+      const txt = msg.text.toLowerCase();
+      for (const svc of SERVICE_MAP) {
+        if (svc.keys.some(k => txt.includes(k))) return svc.label;
+      }
     }
     return '';
   }
@@ -944,6 +992,15 @@
       ? `<div class="booking-service-tag">✨ ${service}</div>`
       : '';
 
+    const ALL_SLOTS = [
+      '10:00 AM','10:30 AM','11:00 AM','11:30 AM',
+      '12:00 PM','12:30 PM','01:00 PM','01:30 PM',
+      '02:00 PM','02:30 PM','03:00 PM','03:30 PM',
+      '04:00 PM','04:30 PM','05:00 PM','05:30 PM',
+      '06:00 PM','06:30 PM','07:00 PM','07:30 PM'
+    ];
+
+    // Render form immediately with all slots enabled, then update booked ones async
     wrapper.innerHTML = `
       <div class="booking-form-card" id="bookingFormCard">
         <div class="booking-form-title">💇‍♀️ Complete Your Booking</div>
@@ -964,6 +1021,34 @@
           <input id="bfService" type="text" placeholder="e.g. Haircut, Facial, Bridal…"
             class="${service ? 'prefilled' : ''}" value="${service}" />
         </div>
+        <div class="booking-field">
+          <label>Appointment Date</label>
+          <div class="date-tab-row" id="dateTabs">
+            ${(() => {
+              const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+              const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+              const today = new Date();
+              return [0,1,2,3,4,5,6].map(i => {
+                const d = new Date(today);
+                d.setDate(today.getDate() + i);
+                const label = i === 0 ? 'Today' : i === 1 ? 'Tomorrow' : days[d.getDay()];
+                const sub   = d.getDate() + ' ' + months[d.getMonth()];
+                const iso   = d.toISOString().slice(0,10);
+                return `<button type="button" class="date-tab${i===0?' active':''}" onclick="selectDate(this,'${iso}')" data-iso="${iso}">
+                  <span class="date-tab-day">${label}</span>
+                  <span class="date-tab-sub">${sub}</span>
+                </button>`;
+              }).join('');
+            })()}
+          </div>
+          <input type="hidden" id="bfDate" value="${new Date().toISOString().slice(0,10)}" />
+        </div>
+        <div class="booking-field">
+          <span class="slot-picker-label" id="slotLabel">Available Slots — Today</span>
+          <div class="slot-grid" id="slotGrid"></div>
+          <div class="slot-err" id="slotErr">Please select a time slot</div>
+        </div>
+        <input type="hidden" id="bfSlot" value="" />
         <button class="booking-submit-btn" id="bfSubmitBtn" onclick="submitBooking()">
           Confirm Booking
         </button>
@@ -975,6 +1060,9 @@
     box.appendChild(wrapper);
     box.scrollTop = box.scrollHeight;
 
+    // Render slots for today on form open
+    renderSlots(new Date().toISOString().slice(0,10));
+
     // Live validation
     const phoneInput = document.getElementById('bfPhone');
     phoneInput.addEventListener('input', () => {
@@ -983,13 +1071,113 @@
       else phoneInput.classList.remove('field-valid');
     });
 
-    // Enter key submits from any field in the form
+    // Enter key submits from any field
     ['bfName','bfPhone','bfService'].forEach(id => {
       const el = document.getElementById(id);
       if (el) el.addEventListener('keydown', e => {
         if (e.key === 'Enter') { e.preventDefault(); submitBooking(); }
       });
     });
+
+    // Async: mark booked slots after form is already visible
+    fetchBookedSlots().then(bookedSlots => {
+      if (!bookedSlots.length) return;
+      document.querySelectorAll('.slot-btn').forEach(btn => {
+        const slot = btn.textContent.trim();
+        if (bookedSlots.includes(slot)) {
+          btn.classList.add('booked');
+          btn.disabled = true;
+          btn.onclick = null;
+          btn.title = 'Already booked';
+          btn.textContent = slot + ' ✗';
+          if (document.getElementById('bfSlot').value === slot) {
+            document.getElementById('bfSlot').value = '';
+            btn.classList.remove('selected');
+          }
+        }
+      });
+    });
+  }
+
+  const ALL_SLOTS = [
+    '10:00 AM','10:30 AM','11:00 AM','11:30 AM',
+    '12:00 PM','12:30 PM','01:00 PM','01:30 PM',
+    '02:00 PM','02:30 PM','03:00 PM','03:30 PM',
+    '04:00 PM','04:30 PM','05:00 PM','05:30 PM',
+    '06:00 PM','06:30 PM','07:00 PM','07:30 PM'
+  ];
+
+  function selectDate(btn, iso) {
+    document.querySelectorAll('.date-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('bfDate').value = iso;
+    const today = new Date().toISOString().slice(0,10);
+    const label = iso === today ? 'Today' : btn.querySelector('.date-tab-day').textContent;
+    document.getElementById('slotLabel').textContent = `Available Slots — ${label}`;
+    document.getElementById('bfSlot').value = '';
+    renderSlots(iso);
+  }
+
+  async function renderSlots(selectedDate) {
+    const grid   = document.getElementById('slotGrid');
+    const today  = new Date().toISOString().slice(0,10);
+    const isToday = selectedDate === today;
+    const now    = new Date();
+    const cutoff = new Date(now.getTime() + 30 * 60 * 1000);
+
+    // Fetch booked slots for selected date
+    let booked = [];
+    try {
+      const res  = await fetch(LEADS_URL);
+      if (res.ok) {
+        const data = await res.json();
+        booked = (data.leads || [])
+          .filter(l => (l.booking_date || l.date) === selectedDate && l.slot)
+          .map(l => l.slot);
+      }
+    } catch(e) {}
+
+    grid.innerHTML = ALL_SLOTS.map(s => {
+      const isBooked = booked.includes(s);
+      let isPast = false;
+      if (isToday) {
+        const [time, mer] = s.split(' ');
+        let [h, m] = time.split(':').map(Number);
+        if (mer === 'PM' && h !== 12) h += 12;
+        if (mer === 'AM' && h === 12) h = 0;
+        const slotDate = new Date(); slotDate.setHours(h, m, 0, 0);
+        isPast = slotDate < cutoff;
+      }
+      const disabled = isBooked || isPast;
+      const cls      = isBooked ? ' booked' : isPast ? ' past' : '';
+      const label    = isBooked ? s + ' ✗' : isPast ? s + ' ·' : s;
+      const title    = isBooked ? 'Already booked' : isPast ? 'Time passed' : '';
+      return disabled
+        ? `<button type="button" class="slot-btn${cls}" disabled title="${title}">${label}</button>`
+        : `<button type="button" class="slot-btn${cls}" onclick="selectSlot(this,'${s}')">${label}</button>`;
+    }).join('');
+  }
+
+  function selectSlot(btn, slot) {
+    document.querySelectorAll('.slot-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    document.getElementById('bfSlot').value = slot;
+    document.getElementById('slotErr').style.display = 'none';
+  }
+
+  async function fetchBookedSlots() {
+    try {
+      const res  = await fetch(LEADS_URL);
+      if (!res.ok) return [];
+      const data = await res.json();
+      const today = new Date().toISOString().slice(0, 10);
+      return (data.leads || [])
+        .filter(l => l.date === today && l.slot)
+        .map(l => l.slot);
+    } catch (e) {
+      console.warn('fetchBookedSlots failed:', e);
+      return [];
+    }
   }
 
   // ── Submit booking form ─────────────────────────────────────────
@@ -1002,25 +1190,32 @@
     const name    = nameEl.value.trim();
     const phone   = phoneEl.value.trim();
     const service = serviceEl.value.trim() || 'General Enquiry';
+    const slotEl  = document.getElementById('bfSlot');
+    const slot    = slotEl ? slotEl.value : '';
 
     // Validate
     let valid = true;
     if (!name) { nameEl.classList.add('field-err'); valid = false; } else nameEl.classList.remove('field-err');
     if (!/^\d{10}$/.test(phone)) { phoneEl.classList.add('field-err'); valid = false; } else phoneEl.classList.remove('field-err');
+    if (!slot) {
+      const slotErr = document.getElementById('slotErr');
+      if (slotErr) slotErr.style.display = 'block';
+      valid = false;
+    }
     if (!valid) return;
 
     btn.disabled = true;
     btn.textContent = 'Submitting…';
 
     try {
-      // Send via the /chat endpoint — the backend detects the phone number and stores lead + sends WhatsApp
       const fullHistory = msgs.slice(-20).map(m => ({
         role: m.role === 'bot' ? 'assistant' : 'user',
         content: m.text || ''
       })).filter(m => m.content);
 
-      // Compose a natural message that carries name + phone so backend extracts everything
-      const syntheticMsg = `My name is ${name} and my number is ${phone}. I want to book: ${service}.`;
+      const dateEl = document.getElementById('bfDate');
+      const date = dateEl ? dateEl.value : new Date().toISOString().slice(0,10);
+      const syntheticMsg = `My name is ${name} and my number is ${phone}. I want to book: ${service} at ${slot} on ${date}.`;
 
       const res = await fetch(BACKEND_URL, {
         method: 'POST',
@@ -1037,18 +1232,18 @@
       msgs = msgs.filter(m => m.type !== 'form');
 
       // Show success message
-      const successMsg = `✅ Booking confirmed, ${name}! Our Studio 5 team will call you on ${phone} shortly to confirm your ${service} appointment. We can't wait to pamper you! 💇‍♀️✨`;
+      const isToday = date === new Date().toISOString().slice(0,10);
+      const dateLabel = isToday ? 'today' : new Date(date + 'T00:00:00').toLocaleDateString('en-IN', {day:'numeric',month:'short',year:'numeric'});
+      const successMsg = `✅ Booking confirmed, ${name}! Your ${service} is scheduled for ${slot} on ${dateLabel}. Our Studio 5 team will call you on ${phone} to confirm. We can't wait to pamper you! 💇‍♀️✨`;
       addBotMsg(successMsg);
 
       formShown = false; // allow re-trigger if needed
       saveMemory();
 
     } catch (e) {
-      btn.disabled = false;
-      btn.textContent = 'Confirm Booking';
-      const phoneEl2 = document.getElementById('bfPhone');
-      if (phoneEl2) phoneEl2.classList.add('field-err');
-      addBotMsg("Sorry, couldn't submit right now. Please try again! 🔌");
+      console.error('Booking submit error:', e);
+      const b = document.getElementById('bfSubmitBtn');
+      if (b) { b.disabled = false; b.textContent = 'Confirm Booking'; }
     }
   }
 
@@ -1058,32 +1253,7 @@
     const text  = input.value.trim();
     if (!text) return;
 
-    // If user typed a phone number directly AND form is not visible → show form
-    if (containsPhone(text) && !formShown && !userDeclined) {
-      input.value = '';
-      const time = getTime();
-      msgs.push({ role: 'user', text, time });
-      saveMemory();
-      renderBubble('user', text, time);
-
-      // Extract name/phone from what they typed and pre-fill form
-      const phoneMatch = text.match(/\b(\d{10})\b/);
-      const nameMatch  = text.match(/(?:my name is|i(?:'?m| am)|this is|call me)\s+([A-Za-z]+(?:\s[A-Za-z]+)?)/i);
-      detectedService  = guessServiceFromHistory();
-      detectedName     = nameMatch ? nameMatch[1].trim() : guessNameFromHistory();
-
-      formShown = true;
-      const promptMsg = "Great! 📋 Please fill in your details below to confirm your booking — our team will call you right away!";
-      addBotMsg(promptMsg);
-      setTimeout(() => {
-        renderFormCard({
-          service: detectedService,
-          name: detectedName,
-          phone: phoneMatch ? phoneMatch[1] : ''
-        }, true);
-      }, 400);
-      return;
-    }
+    // Phone typed in chat — just let it flow normally to the backend
 
     input.value = '';
     const time = getTime();
@@ -1129,8 +1299,12 @@
       const reply = data.reply || "I'm here to help! 😊";
 
       // Show form whenever bot says the quick form phrase — always, ignoring userDeclined
-      const botSaysForm = reply.includes('fill in the quick form below');
-      const formTrigger = botSaysForm || (!userDeclined && (shouldShowForm(reply) || userWantsToBook || userReInterested));
+      // ONLY trigger form when bot explicitly says so — bot is single source of truth
+      const botSaysForm = reply.toLowerCase().includes('quick form') ||
+        reply.toLowerCase().includes('form below') ||
+        reply.toLowerCase().includes('fill in the form') ||
+        reply.toLowerCase().includes('fill the form');
+      const formTrigger = botSaysForm;
       if (botSaysForm) userDeclined = false;
 
       addBotMsg(reply);

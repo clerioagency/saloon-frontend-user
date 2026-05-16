@@ -1,14 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Studio 5 — Premium Salon</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap"
-    rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --gold: #c9a96e;
@@ -21,27 +17,15 @@
       --text: #f5f0ea;
       --text-muted: #9a8472;
     }
-
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Outfit', sans-serif;
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
       overflow-x: hidden;
     }
-
     body::before {
       content: '';
       position: fixed;
@@ -53,1918 +37,965 @@
 
     /* ── NAV ── */
     nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 50;
-      padding: 20px 60px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid rgba(201, 169, 110, 0.06);
-      background: rgba(13, 11, 9, 0.7);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      padding: 14px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid rgba(201,169,110,0.06);
+      background: rgba(13,11,9,0.7);
       backdrop-filter: blur(14px);
     }
-
     .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 22px;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      color: var(--gold);
+      font-family: 'Playfair Display', serif;
+      font-size: 20px; font-weight: 600; letter-spacing: 0.06em; color: var(--gold);
     }
-
-    .nav-logo span {
-      font-style: italic;
-      font-weight: 300;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 36px;
-      list-style: none;
-    }
-
+    .nav-logo span { font-style: italic; font-weight: 300; }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
     .nav-links a {
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: color 0.2s;
+      font-size: 12px; font-weight: 500; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.2s;
     }
-
-    .nav-links a:hover {
-      color: var(--gold);
-    }
-
+    .nav-links a:hover { color: var(--gold); }
     .nav-cta {
-      padding: 9px 24px;
-      border: 1px solid var(--gold-dim);
-      color: var(--gold);
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      background: transparent;
-      cursor: pointer;
-      font-family: 'DM Sans', sans-serif;
+      padding: 9px 24px; border: 1px solid var(--gold-dim); color: var(--gold);
+      font-size: 12px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase;
+      background: transparent; cursor: pointer; font-family: 'Outfit', sans-serif;
       transition: background 0.25s, color 0.25s;
     }
-
-    .nav-cta:hover {
-      background: var(--gold);
-      color: var(--bg);
-    }
+    .nav-cta:hover { background: var(--gold); color: var(--bg); }
 
     /* ── HERO ── */
     .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      text-align: center;
-      padding: 120px 40px 80px;
-      z-index: 1;
+      position: relative; min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; text-align: center;
+      padding: 120px 40px 80px; z-index: 1;
     }
-
     .hero::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
+      content: ''; position: absolute; top: 50%; left: 50%;
       transform: translate(-50%, -60%);
-      width: 700px;
-      height: 700px;
-      background: radial-gradient(circle, rgba(201, 169, 110, 0.09) 0%, transparent 65%);
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(201,169,110,0.09) 0%, transparent 65%);
       pointer-events: none;
     }
-
     .hero-tag {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 5px;
-      text-transform: uppercase;
-      color: var(--gold);
-      opacity: 0;
-      animation: fadeUp 0.9s 0.2s forwards;
-      margin-bottom: 20px;
+      font-size: 11px; font-weight: 500; letter-spacing: 5px;
+      text-transform: uppercase; color: var(--gold);
+      opacity: 0; animation: fadeUp 0.9s 0.2s forwards; margin-bottom: 20px;
     }
-
     .hero h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(58px, 11vw, 110px);
-      font-weight: 300;
-      line-height: 0.92;
-      letter-spacing: -0.01em;
-      color: var(--text);
-      opacity: 0;
-      animation: fadeUp 0.9s 0.4s forwards;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(48px, 10vw, 110px);
+      font-weight: 300; line-height: 0.92; letter-spacing: -0.01em;
+      color: var(--text); opacity: 0; animation: fadeUp 0.9s 0.4s forwards;
     }
-
-    .hero h1 em {
-      color: var(--gold);
-      font-style: italic;
-      display: block;
-    }
-
+    .hero h1 em { color: var(--gold); font-style: italic; display: block; }
     .hero-sub {
-      margin-top: 28px;
-      font-size: 15px;
-      color: var(--text-muted);
-      letter-spacing: 1px;
-      max-width: 400px;
-      line-height: 1.7;
-      opacity: 0;
-      animation: fadeUp 0.9s 0.6s forwards;
+      margin-top: 28px; font-size: 15px; color: var(--text-muted);
+      letter-spacing: 1px; max-width: 400px; line-height: 1.7;
+      opacity: 0; animation: fadeUp 0.9s 0.6s forwards;
     }
-
     .hero-actions {
-      margin-top: 44px;
-      display: flex;
-      gap: 16px;
-      align-items: center;
-      opacity: 0;
-      animation: fadeUp 0.9s 0.8s forwards;
+      margin-top: 44px; display: flex; gap: 16px; align-items: center;
+      opacity: 0; animation: fadeUp 0.9s 0.8s forwards;
     }
-
     .btn-primary {
-      padding: 14px 36px;
-      background: var(--gold);
-      color: var(--bg);
-      border: none;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      cursor: pointer;
+      padding: 14px 36px; background: var(--gold); color: var(--bg); border: none;
+      font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 500;
+      letter-spacing: 2.5px; text-transform: uppercase; cursor: pointer;
       transition: background 0.25s, transform 0.15s;
     }
-
-    .btn-primary:hover {
-      background: var(--gold-light);
-      transform: translateY(-1px);
-    }
-
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
     .btn-ghost {
-      padding: 14px 36px;
-      background: transparent;
-      color: var(--text-muted);
-      border: 1px solid var(--border);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: color 0.25s, border-color 0.25s;
+      padding: 14px 36px; background: transparent; color: var(--text-muted);
+      border: 1px solid var(--border); font-family: 'Outfit', sans-serif;
+      font-size: 12px; font-weight: 500; letter-spacing: 2.5px; text-transform: uppercase;
+      cursor: pointer; transition: color 0.25s, border-color 0.25s;
     }
-
-    .btn-ghost:hover {
-      color: var(--gold);
-      border-color: var(--gold-dim);
-    }
-
+    .btn-ghost:hover { color: var(--gold); border-color: var(--gold-dim); }
     .hero-scroll {
-      position: absolute;
-      bottom: 36px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      opacity: 0;
-      animation: fadeIn 1s 1.4s forwards;
+      position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      opacity: 0; animation: fadeIn 1s 1.4s forwards;
     }
-
-    .hero-scroll span {
-      font-size: 10px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
-
+    .hero-scroll span { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); }
     .scroll-line {
-      width: 1px;
-      height: 40px;
+      width: 1px; height: 40px;
       background: linear-gradient(to bottom, var(--gold-dim), transparent);
       animation: scrollPulse 2s ease-in-out infinite;
     }
+    @keyframes scrollPulse { 0%,100%{opacity:0.4;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.15)} }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)} }
+    @keyframes fadeIn { from{opacity:0}to{opacity:1} }
 
-    @keyframes scrollPulse {
-
-      0%,
-      100% {
-        opacity: 0.4;
-        transform: scaleY(1);
-      }
-
-      50% {
-        opacity: 1;
-        transform: scaleY(1.15);
-      }
+    /* ── SECTIONS ── */
+    .section { position: relative; z-index: 1; padding: 100px 60px; }
+    .section-label {
+      font-size: 11px; font-weight: 500; letter-spacing: 4px;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 14px;
     }
-
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(22px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 300; color: var(--text); margin-bottom: 60px; line-height: 1.1;
     }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-
-      to {
-        opacity: 1;
-      }
-    }
+    .section-title em { font-style: italic; color: var(--gold); }
 
     /* ── SERVICES ── */
-    .section {
-      position: relative;
-      z-index: 1;
-      padding: 100px 60px;
-    }
-
-    .section-label {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 14px;
-    }
-
-    .section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(36px, 5vw, 56px);
-      font-weight: 300;
-      color: var(--text);
-      margin-bottom: 60px;
-      line-height: 1.1;
-    }
-
-    .section-title em {
-      font-style: italic;
-      color: var(--gold);
-    }
-
     .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1px;
-      border: 1px solid var(--border);
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1px; border: 1px solid var(--border);
     }
-
     .service-card {
-      background: var(--surface);
-      padding: 36px 32px;
+      background: var(--surface); padding: 36px 32px;
       border-right: 1px solid var(--border);
-      transition: background 0.3s;
-      position: relative;
-      overflow: hidden;
+      transition: background 0.3s; position: relative; overflow: hidden;
     }
-
-    .service-card:last-child {
-      border-right: none;
-    }
-
-    .service-card:hover {
-      background: var(--surface2);
-    }
-
+    .service-card:last-child { border-right: none; }
+    .service-card:hover { background: var(--surface2); }
     .service-card::before {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: var(--gold);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s ease;
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 100%; height: 2px; background: var(--gold);
+      transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
     }
-
-    .service-card:hover::before {
-      transform: scaleX(1);
-    }
-
-    .service-icon {
-      font-size: 28px;
-      margin-bottom: 18px;
-    }
-
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon { font-size: 28px; margin-bottom: 18px; }
     .service-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 20px;
-      font-weight: 400;
-      color: var(--text);
-      margin-bottom: 8px;
+      font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 400;
+      color: var(--text); margin-bottom: 8px;
     }
-
-    .service-desc {
-      font-size: 13px;
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 20px;
-    }
-
-    .service-price {
-      font-size: 13px;
-      color: var(--gold);
-      letter-spacing: 1px;
-    }
-
-    .gold-divider {
-      width: 60px;
-      height: 1px;
-      background: var(--gold-dim);
-      margin: 0 auto 60px;
-    }
+    .service-desc { font-size: 13px; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; }
+    .service-price { font-size: 13px; color: var(--gold); letter-spacing: 1px; }
 
     /* ── ABOUT ── */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
     .about-visual {
-      aspect-ratio: 4/5;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
+      aspect-ratio: 4/5; background: var(--surface2); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
     }
-
     .about-visual::after {
-      content: 'STUDIO 5';
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 11px;
-      letter-spacing: 8px;
-      color: var(--gold-dim);
-      position: absolute;
+      content: 'STUDIO 5'; font-family: 'Playfair Display', serif;
+      font-size: 11px; letter-spacing: 8px; color: var(--gold-dim); position: absolute;
     }
-
-    .about-visual-line {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      bottom: 20px;
-      left: 20px;
-      border: 1px solid var(--border);
-    }
-
-    .about-content p {
-      font-size: 15px;
-      color: var(--text-muted);
-      line-height: 1.9;
-      margin-bottom: 20px;
-    }
-
+    .about-visual-line { position: absolute; top: 20px; right: 20px; bottom: 20px; left: 20px; border: 1px solid var(--border); }
+    .about-content p { font-size: 15px; color: var(--text-muted); line-height: 1.9; margin-bottom: 20px; }
     .stats-row {
-      display: flex;
-      gap: 0;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      margin: 60px 0 0;
+      display: flex; gap: 0;
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin: 60px 0 0;
     }
-
-    .stat {
-      flex: 1;
-      padding: 32px 0;
-      border-right: 1px solid var(--border);
-      text-align: center;
-    }
-
-    .stat:last-child {
-      border-right: none;
-    }
-
-    .stat-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 42px;
-      font-weight: 300;
-      color: var(--gold);
-      line-height: 1;
-    }
-
-    .stat-label {
-      font-size: 11px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-top: 6px;
-    }
+    .stat { flex: 1; padding: 32px 0; border-right: 1px solid var(--border); text-align: center; }
+    .stat:last-child { border-right: none; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 300; color: var(--gold); line-height: 1; }
+    .stat-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); margin-top: 6px; }
 
     /* ── INFO ── */
-    .info-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1px;
-      border: 1px solid var(--border);
-    }
-
-    .info-card {
-      background: var(--surface);
-      padding: 44px 40px;
-    }
-
+    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; border: 1px solid var(--border); }
+    .info-card { background: var(--surface); padding: 44px 40px; }
     .info-card-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 26px;
-      font-weight: 400;
-      color: var(--text);
-      margin-bottom: 24px;
+      font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 400;
+      color: var(--text); margin-bottom: 24px;
     }
-
     .info-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 14px;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 14px;
     }
-
-    .info-row:last-child {
-      border-bottom: none;
-    }
-
-    .info-row span:first-child {
-      color: var(--text-muted);
-    }
-
-    .info-row span:last-child {
-      color: var(--text);
-    }
-
-    .info-highlight {
-      color: var(--gold) !important;
-    }
+    .info-row:last-child { border-bottom: none; }
+    .info-row span:first-child { color: var(--text-muted); }
+    .info-row span:last-child { color: var(--text); }
+    .info-highlight { color: var(--gold) !important; }
 
     /* ── FOOTER ── */
     footer {
-      position: relative;
-      z-index: 1;
-      padding: 40px 60px;
+      position: relative; z-index: 1; padding: 40px 60px;
       border-top: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      display: flex; align-items: center; justify-content: space-between;
     }
-
-    .footer-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 18px;
-      font-weight: 400;
-      color: var(--gold-dim);
-      letter-spacing: 0.06em;
-    }
-
-    footer p {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 400; color: var(--gold-dim); letter-spacing: 0.06em; }
+    footer p { font-size: 12px; color: var(--text-muted); }
 
     /* ── CHAT WIDGET ── */
     .chat-wrapper {
-      position: fixed;
-      bottom: 28px;
-      right: 28px;
-      z-index: 200;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 12px;
+      position: fixed; bottom: 28px; right: 28px; z-index: 200;
+      display: flex; flex-direction: column; align-items: flex-end; gap: 12px;
     }
-
     .chat-panel {
-      width: 380px;
-      height: 560px;
+      width: 380px; height: 560px;
       background: var(--surface);
-      border: 1px solid rgba(201, 169, 110, 0.2);
+      border: 1px solid rgba(201,169,110,0.2);
       border-radius: 18px;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(201, 169, 110, 0.06);
+      display: flex; flex-direction: column; overflow: hidden;
+      box-shadow: 0 28px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(201,169,110,0.06);
       transform-origin: bottom right;
       transform: scale(0.88) translateY(12px);
       opacity: 0;
-      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s ease;
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.25s ease;
       pointer-events: none;
     }
-
-    .chat-panel.open {
-      transform: scale(1) translateY(0);
-      opacity: 1;
-      pointer-events: all;
-    }
-
+    .chat-panel.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }
     .chat-header {
-      padding: 14px 18px;
-      background: var(--surface2);
+      padding: 14px 18px; background: var(--surface2);
       border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-shrink: 0;
+      display: flex; align-items: center; gap: 12px; flex-shrink: 0;
     }
-
     .chat-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
+      width: 40px; height: 40px; border-radius: 50%;
       background: linear-gradient(135deg, var(--gold-dim), var(--gold));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--bg);
-      flex-shrink: 0;
-      position: relative;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 600;
+      color: var(--bg); flex-shrink: 0; position: relative;
     }
-
     .chat-avatar::after {
-      content: '';
-      position: absolute;
-      bottom: 1px;
-      right: 1px;
-      width: 9px;
-      height: 9px;
-      background: #4caf50;
-      border-radius: 50%;
-      border: 2px solid var(--surface2);
+      content: ''; position: absolute; bottom: 1px; right: 1px;
+      width: 9px; height: 9px; background: #4caf50;
+      border-radius: 50%; border: 2px solid var(--surface2);
     }
-
-    .chat-header-info {
-      flex: 1;
-    }
-
-    .chat-header-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 16px;
-      font-weight: 400;
-      color: var(--text);
-    }
-
-    .chat-header-status {
-      font-size: 11px;
-      color: var(--gold);
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      margin-top: 1px;
-    }
-
-    .status-dot {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: #4caf50;
-      animation: pulse-dot 2s infinite;
-    }
-
-    @keyframes pulse-dot {
-
-      0%,
-      100% {
-        opacity: 1;
-      }
-
-      50% {
-        opacity: 0.4;
-      }
-    }
-
+    .chat-header-info { flex: 1; }
+    .chat-header-name { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 400; color: var(--text); }
+    .chat-header-status { font-size: 11px; color: var(--gold); display: flex; align-items: center; gap: 5px; margin-top: 1px; }
+    .status-dot { width: 5px; height: 5px; border-radius: 50%; background: #4caf50; animation: pulse-dot 2s infinite; }
+    @keyframes pulse-dot { 0%,100%{opacity:1}50%{opacity:0.4} }
     .chat-clear-btn {
-      background: none;
-      border: none;
-      color: var(--text-muted);
-      font-size: 14px;
-      cursor: pointer;
-      width: 30px;
-      height: 30px;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: color 0.2s, background 0.2s;
-      line-height: 1;
+      background: none; border: none; color: var(--text-muted); font-size: 14px; cursor: pointer;
+      width: 30px; height: 30px; border-radius: 6px; display: flex; align-items: center;
+      justify-content: center; transition: color 0.2s, background 0.2s; line-height: 1;
     }
-
-    .chat-clear-btn:hover {
-      color: var(--gold);
-      background: var(--border);
-    }
-
+    .chat-clear-btn:hover { color: var(--gold); background: var(--border); }
     .chat-close-btn {
-      background: none;
-      border: none;
-      color: var(--text-muted);
-      font-size: 18px;
-      cursor: pointer;
-      width: 28px;
-      height: 28px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 6px;
-      transition: color 0.2s, background 0.2s;
-      line-height: 1;
+      background: none; border: none; color: var(--text-muted); font-size: 18px; cursor: pointer;
+      width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
+      border-radius: 6px; transition: color 0.2s, background 0.2s; line-height: 1;
     }
-
-    .chat-close-btn:hover {
-      color: var(--text);
-      background: var(--border);
-    }
-
+    .chat-close-btn:hover { color: var(--text); background: var(--border); }
     .chat-messages {
-      flex: 1;
-      overflow-y: auto;
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      scroll-behavior: smooth;
+      flex: 1; overflow-y: auto; padding: 16px;
+      display: flex; flex-direction: column; gap: 12px; scroll-behavior: smooth;
     }
-
-    .chat-messages::-webkit-scrollbar {
-      width: 3px;
-    }
-
-    .chat-messages::-webkit-scrollbar-thumb {
-      background: var(--border);
-      border-radius: 4px;
-    }
-
-    .msg {
-      display: flex;
-      flex-direction: column;
-      max-width: 86%;
-      animation: msgIn 0.3s ease;
-    }
-
-    .msg.user {
-      align-self: flex-end;
-      align-items: flex-end;
-    }
-
-    .msg.bot {
-      align-self: flex-start;
-      align-items: flex-start;
-    }
-
-    @keyframes msgIn {
-      from {
-        opacity: 0;
-        transform: translateY(6px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .msg-bubble {
-      padding: 10px 14px;
-      border-radius: 16px;
-      font-size: 13.5px;
-      line-height: 1.6;
-    }
-
+    .chat-messages::-webkit-scrollbar { width: 3px; }
+    .chat-messages::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+    .msg { display: flex; flex-direction: column; max-width: 86%; animation: msgIn 0.3s ease; }
+    .msg.user { align-self: flex-end; align-items: flex-end; }
+    .msg.bot { align-self: flex-start; align-items: flex-start; }
+    @keyframes msgIn { from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)} }
+    .msg-bubble { padding: 10px 14px; border-radius: 16px; font-size: 13.5px; line-height: 1.6; }
     .msg.user .msg-bubble {
       background: linear-gradient(135deg, var(--gold), var(--gold-light));
-      color: #1a0f00;
-      font-weight: 500;
-      border-bottom-right-radius: 4px;
+      color: #1a0f00; font-weight: 500; border-bottom-right-radius: 4px;
     }
-
     .msg.bot .msg-bubble {
-      background: var(--surface2);
-      color: var(--text);
-      border: 1px solid var(--border);
-      border-bottom-left-radius: 4px;
+      background: var(--surface2); color: var(--text);
+      border: 1px solid var(--border); border-bottom-left-radius: 4px;
     }
-
-    .msg-time {
-      font-size: 10px;
-      color: var(--text-muted);
-      margin-top: 4px;
-      padding: 0 4px;
-    }
-
-    .typing-indicator .msg-bubble {
-      display: flex;
-      gap: 4px;
-      align-items: center;
-      padding: 13px 16px;
-    }
-
-    .typing-dot {
-      width: 6px;
-      height: 6px;
-      background: var(--gold);
-      border-radius: 50%;
-      animation: typingBounce 1.2s infinite;
-    }
-
-    .typing-dot:nth-child(2) {
-      animation-delay: 0.2s;
-    }
-
-    .typing-dot:nth-child(3) {
-      animation-delay: 0.4s;
-    }
-
-    @keyframes typingBounce {
-
-      0%,
-      60%,
-      100% {
-        transform: translateY(0);
-        opacity: 0.4;
-      }
-
-      30% {
-        transform: translateY(-5px);
-        opacity: 1;
-      }
-    }
-
-    .quick-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      padding: 4px 16px 12px;
-      flex-shrink: 0;
-    }
-
+    .msg-time { font-size: 10px; color: var(--text-muted); margin-top: 4px; padding: 0 4px; }
+    .typing-indicator .msg-bubble { display: flex; gap: 4px; align-items: center; padding: 13px 16px; }
+    .typing-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: typingBounce 1.2s infinite; }
+    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typingBounce { 0%,60%,100%{transform:translateY(0);opacity:0.4}30%{transform:translateY(-5px);opacity:1} }
+    .quick-chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 4px 16px 12px; flex-shrink: 0; }
     .quick-chip {
-      padding: 5px 13px;
-      border-radius: 20px;
-      border: 1px solid var(--gold-dim);
-      color: var(--gold);
-      font-size: 12px;
-      cursor: pointer;
-      background: transparent;
-      font-family: 'DM Sans', sans-serif;
-      transition: background 0.2s, color 0.2s;
-      white-space: nowrap;
+      padding: 5px 13px; border-radius: 20px; border: 1px solid var(--gold-dim);
+      color: var(--gold); font-size: 12px; cursor: pointer; background: transparent;
+      font-family: 'Outfit', sans-serif; transition: background 0.2s, color 0.2s; white-space: nowrap;
     }
-
-    .quick-chip:hover {
-      background: rgba(201, 169, 110, 0.12);
-      border-color: var(--gold);
-    }
-
+    .quick-chip:hover { background: rgba(201,169,110,0.12); border-color: var(--gold); }
     .chat-input-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 14px 16px;
-      border-top: 1px solid var(--border);
-      background: var(--surface2);
-      flex-shrink: 0;
+      display: flex; align-items: center; gap: 8px; padding: 12px 14px 16px;
+      border-top: 1px solid var(--border); background: var(--surface2); flex-shrink: 0;
     }
-
     .chat-input {
-      flex: 1;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 10px 16px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 13.5px;
-      color: var(--text);
-      outline: none;
-      transition: border-color 0.2s;
+      flex: 1; background: var(--surface); border: 1px solid var(--border);
+      border-radius: 24px; padding: 10px 16px; font-family: 'Outfit', sans-serif;
+      font-size: 13.5px; color: var(--text); outline: none; transition: border-color 0.2s;
     }
-
-    .chat-input::placeholder {
-      color: var(--text-muted);
-    }
-
-    .chat-input:focus {
-      border-color: var(--gold-dim);
-    }
-
+    .chat-input::placeholder { color: var(--text-muted); }
+    .chat-input:focus { border-color: var(--gold-dim); }
     .chat-send-btn {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--gold);
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.2s, transform 0.15s;
-      flex-shrink: 0;
+      width: 40px; height: 40px; border-radius: 50%; background: var(--gold); border: none;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, transform 0.15s; flex-shrink: 0;
     }
+    .chat-send-btn:hover { background: var(--gold-light); transform: scale(1.06); }
+    .chat-send-btn:active { transform: scale(0.94); }
+    .chat-send-btn svg { width: 16px; height: 16px; fill: #1a0f00; }
 
-    .chat-send-btn:hover {
-      background: var(--gold-light);
-      transform: scale(1.06);
-    }
-
-    .chat-send-btn:active {
-      transform: scale(0.94);
-    }
-
-    .chat-send-btn svg {
-      width: 16px;
-      height: 16px;
-      fill: #1a0f00;
-    }
-
-    /* ── BOOKING FORM CARD ── */
+    /* ── BOOKING FORM ── */
     .booking-form-card {
-      background: var(--surface);
-      border: 1px solid rgba(201, 169, 110, 0.35);
-      border-radius: 14px;
-      padding: 18px 16px 14px;
-      margin: 2px 0;
-      width: 100%;
+      background: var(--surface); border: 1px solid rgba(201,169,110,0.35);
+      border-radius: 14px; padding: 18px 16px 14px; margin: 2px 0; width: 100%;
       animation: msgIn 0.35s ease;
     }
-
     .booking-form-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 17px;
-      font-weight: 400;
-      color: var(--gold);
-      margin-bottom: 4px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+      font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 400;
+      color: var(--gold); margin-bottom: 4px; display: flex; align-items: center; gap: 6px;
     }
-
-    .booking-form-subtitle {
-      font-size: 11px;
-      color: var(--text-muted);
-      margin-bottom: 14px;
-      letter-spacing: 0.3px;
-    }
-
-    .booking-field {
-      margin-bottom: 11px;
-    }
-
+    .booking-form-subtitle { font-size: 11px; color: var(--text-muted); margin-bottom: 14px; letter-spacing: 0.3px; }
+    .booking-field { margin-bottom: 11px; }
     .booking-field label {
-      display: block;
-      font-size: 10px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 5px;
+      display: block; font-size: 10px; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--text-muted); margin-bottom: 5px;
     }
-
     .booking-field input {
-      width: 100%;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 9px 12px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 13px;
-      color: var(--text);
-      outline: none;
-      transition: border-color 0.2s;
+      width: 100%; background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 8px; padding: 9px 12px; font-family: 'Outfit', sans-serif;
+      font-size: 13px; color: var(--text); outline: none; transition: border-color 0.2s;
     }
-
-    .booking-field input::placeholder {
-      color: var(--text-muted);
-      opacity: 0.7;
-    }
-
-    .booking-field input:focus {
-      border-color: var(--gold-dim);
-    }
-
-    .date-tab-row {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-      margin-top: 6px;
-    }
-
+    .booking-field input::placeholder { color: var(--text-muted); opacity: 0.7; }
+    .booking-field input:focus { border-color: var(--gold-dim); }
+    .date-tab-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
     .date-tab {
-      flex: 1;
-      min-width: 60px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 7px 6px;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      background: var(--surface2);
-      cursor: pointer;
-      transition: all 0.2s;
-      font-family: 'DM Sans', sans-serif;
+      flex: 1; min-width: 60px; display: flex; flex-direction: column; align-items: center;
+      padding: 7px 6px; border-radius: 8px; border: 1px solid var(--border);
+      background: var(--surface2); cursor: pointer; transition: all 0.2s; font-family: 'Outfit', sans-serif;
     }
-
-    .date-tab:hover {
-      border-color: var(--gold-dim);
-    }
-
-    .date-tab.active {
-      border-color: var(--gold);
-      background: rgba(201, 169, 110, 0.1);
-    }
-
-    .date-tab-day {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--text);
-      letter-spacing: 0.5px;
-    }
-
-    .date-tab.active .date-tab-day {
-      color: var(--gold);
-    }
-
-    .date-tab-sub {
-      font-size: 10px;
-      color: var(--text-muted);
-      margin-top: 2px;
-    }
-
+    .date-tab:hover { border-color: var(--gold-dim); }
+    .date-tab.active { border-color: var(--gold); background: rgba(201,169,110,0.1); }
+    .date-tab-day { font-size: 11px; font-weight: 600; color: var(--text); letter-spacing: 0.5px; }
+    .date-tab.active .date-tab-day { color: var(--gold); }
+    .date-tab-sub { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
     .booking-field input.prefilled {
-      border-color: rgba(201, 169, 110, 0.4);
-      background: rgba(201, 169, 110, 0.06);
-      color: var(--gold-light);
+      border-color: rgba(201,169,110,0.4); background: rgba(201,169,110,0.06); color: var(--gold-light);
     }
-
     .booking-service-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(201, 169, 110, 0.1);
-      border: 1px solid rgba(201, 169, 110, 0.3);
-      border-radius: 20px;
-      padding: 4px 12px;
-      font-size: 12px;
-      color: var(--gold);
-      margin-bottom: 12px;
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(201,169,110,0.1); border: 1px solid rgba(201,169,110,0.3);
+      border-radius: 20px; padding: 4px 12px; font-size: 12px; color: var(--gold); margin-bottom: 12px;
     }
-
     .booking-submit-btn {
-      width: 100%;
-      padding: 11px 0;
+      width: 100%; padding: 11px 0;
       background: linear-gradient(135deg, var(--gold-dim), var(--gold));
-      color: var(--bg);
-      border: none;
-      border-radius: 8px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: opacity 0.2s, transform 0.15s;
-      margin-top: 4px;
+      color: var(--bg); border: none; border-radius: 8px;
+      font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 500;
+      letter-spacing: 2px; text-transform: uppercase; cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s; margin-top: 4px;
     }
+    .booking-submit-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+    .booking-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .booking-note { font-size: 10px; color: var(--text-muted); text-align: center; margin-top: 8px; letter-spacing: 0.3px; }
+    .field-valid { border-color: rgba(76,175,80,0.5) !important; }
+    .field-err { border-color: rgba(220,80,80,0.6) !important; }
 
-    .booking-submit-btn:hover {
-      opacity: 0.88;
-      transform: translateY(-1px);
-    }
-
-    .booking-submit-btn:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    .booking-note {
-      font-size: 10px;
-      color: var(--text-muted);
-      text-align: center;
-      margin-top: 8px;
-      letter-spacing: 0.3px;
-    }
-
-    .field-valid {
-      border-color: rgba(76, 175, 80, 0.5) !important;
-    }
-
-    .field-err {
-      border-color: rgba(220, 80, 80, 0.6) !important;
-    }
-
-    /* ── Slot picker ── */
+    /* ── SLOT PICKER ── */
     .slot-picker-label {
-      display: block;
-      font-size: 10px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 8px;
+      display: block; font-size: 10px; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px;
     }
-
-    .slot-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 6px;
-      margin-bottom: 11px;
-    }
-
+    .slot-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 6px; margin-bottom: 11px; }
     .slot-btn {
-      padding: 7px 4px;
-      border-radius: 7px;
-      border: 1px solid var(--border);
-      background: var(--surface2);
-      color: var(--text);
-      font-size: 11px;
-      font-family: 'DM Sans', sans-serif;
-      cursor: pointer;
-      text-align: center;
+      padding: 7px 4px; border-radius: 7px; border: 1px solid var(--border);
+      background: var(--surface2); color: var(--text); font-size: 11px;
+      font-family: 'Outfit', sans-serif; cursor: pointer; text-align: center;
       transition: background 0.2s, border-color 0.2s, color 0.2s;
     }
-
-    .slot-btn.past {
-      opacity: 0.25;
-      cursor: not-allowed;
-      text-decoration: line-through;
-      border-color: transparent;
-    }
-
-    .slot-btn:hover:not(.booked):not(.selected) {
-      border-color: var(--gold-dim);
-      color: var(--gold);
-    }
-
-    .slot-btn.selected {
-      background: rgba(201, 169, 110, 0.18);
-      border-color: var(--gold);
-      color: var(--gold);
-      font-weight: 500;
-    }
-
+    .slot-btn.past { opacity: 0.25; cursor: not-allowed; text-decoration: line-through; border-color: transparent; }
+    .slot-btn:hover:not(.booked):not(.selected) { border-color: var(--gold-dim); color: var(--gold); }
+    .slot-btn.selected { background: rgba(201,169,110,0.18); border-color: var(--gold); color: var(--gold); font-weight: 500; }
     .slot-btn.booked {
-      background: rgba(220, 80, 80, 0.07);
-      border-color: rgba(220, 80, 80, 0.25);
-      color: rgba(154, 132, 114, 0.5);
-      cursor: not-allowed;
-      text-decoration: line-through;
-      font-size: 10px;
+      background: rgba(220,80,80,0.07); border-color: rgba(220,80,80,0.25);
+      color: rgba(154,132,114,0.5); cursor: not-allowed; text-decoration: line-through; font-size: 10px;
     }
-
-    .slot-err {
-      font-size: 11px;
-      color: #e05050;
-      margin-top: -6px;
-      margin-bottom: 8px;
-      display: none;
-    }
+    .slot-err { font-size: 11px; color: #e05050; margin-top: -6px; margin-bottom: 8px; display: none; }
 
     /* ── FAB ── */
     .chat-fab {
-      width: 62px;
-      height: 62px;
-      border-radius: 50%;
+      width: 62px; height: 62px; border-radius: 50%;
       background: linear-gradient(135deg, var(--gold-dim), var(--gold));
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 8px 32px rgba(201, 169, 110, 0.45);
-      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
+      border: none; cursor: pointer;
+      box-shadow: 0 8px 32px rgba(201,169,110,0.45);
+      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     }
-
-    .chat-fab:hover {
-      transform: scale(1.1);
-      box-shadow: 0 12px 40px rgba(201, 169, 110, 0.6);
-    }
-
-    .chat-fab svg {
-      width: 26px;
-      height: 26px;
-      fill: var(--bg);
-    }
-
+    .chat-fab:hover { transform: scale(1.1); box-shadow: 0 12px 40px rgba(201,169,110,0.6); }
+    .chat-fab svg { width: 26px; height: 26px; fill: var(--bg); }
     .fab-notif {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 14px;
-      height: 14px;
-      background: #e05555;
-      border-radius: 50%;
-      border: 2px solid var(--bg);
-      animation: notifPulse 2s infinite;
-      display: none;
+      position: absolute; top: 0; right: 0; width: 14px; height: 14px;
+      background: #e05555; border-radius: 50%; border: 2px solid var(--bg);
+      animation: notifPulse 2s infinite; display: none;
+    }
+    @keyframes notifPulse { 0%,100%{transform:scale(1)}50%{transform:scale(1.25)} }
+    .fab-wrap { position: relative; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 13px 20px; }
+      .nav-links { display: none; }
+      .nav-cta { padding: 8px 16px; font-size: 11px; letter-spacing: 1px; }
+      .hero { padding: 90px 20px 60px; }
+      .hero-sub { font-size: 14px; letter-spacing: 0.3px; }
+      .hero-actions { flex-direction: column; gap: 12px; width: 100%; }
+      .btn-primary, .btn-ghost { width: 100%; text-align: center; padding: 14px 20px; }
+      .section { padding: 60px 20px; }
+      .section-title { margin-bottom: 32px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .service-card { border-right: none; border-bottom: 1px solid var(--border); padding: 28px 20px; }
+      .service-card:last-child { border-bottom: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .about-visual { display: none; }
+      .stats-row { flex-wrap: wrap; }
+      .stat { min-width: 50%; border-right: none; border-bottom: 1px solid var(--border); padding: 24px 0; }
+      .stat:last-child { border-bottom: none; }
+      .info-grid { grid-template-columns: 1fr; }
+      .info-card { padding: 24px 20px; }
+      .info-row { font-size: 13px; }
+      footer { flex-direction: column; gap: 10px; text-align: center; padding: 24px 20px; }
     }
 
-    @keyframes notifPulse {
+    @media (max-width: 480px) {
+      nav { padding: 12px 14px; }
+      .nav-logo { font-size: 17px; }
+      .hero { padding: 76px 14px 50px; }
+      .hero-tag { font-size: 10px; letter-spacing: 3px; }
+      .hero h1 { font-size: clamp(34px, 11vw, 60px); }
+      .hero-sub { font-size: 13px; max-width: 100%; }
+      .section { padding: 44px 14px; }
+      .section-title { font-size: clamp(24px, 7vw, 36px); margin-bottom: 24px; }
+      .info-card { padding: 18px 14px; }
+      .service-card { padding: 22px 16px; }
+      footer { padding: 18px 14px; }
+      .stat-num { font-size: 34px; }
 
-      0%,
-      100% {
-        transform: scale(1);
+      /* Full screen chat on mobile */
+      .chat-wrapper { bottom: 0; right: 0; left: 0; align-items: stretch; }
+      .chat-wrapper .fab-wrap { position: fixed; bottom: 18px; right: 18px; align-self: auto; }
+      .chat-panel {
+        position: fixed; inset: 0; width: 100%; height: 100%;
+        border-radius: 0; border: none;
+        transform: translateY(100%);
+        transform-origin: bottom center;
       }
-
-      50% {
-        transform: scale(1.25);
-      }
-    }
-
-    .fab-wrap {
-      position: relative;
+      .chat-panel.open { transform: translateY(0); }
     }
   </style>
 </head>
-
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <div class="nav-logo">Studio <span>Five</span></div>
-    <ul class="nav-links">
-      <li><a href="#services">Services</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#info">Visit</a></li>
-    </ul>
-    <button class="nav-cta" onclick="openChat()">Book Now</button>
-  </nav>
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Studio <span>Five</span></div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#info">Visit</a></li>
+  </ul>
+  <button class="nav-cta" onclick="openChat()">Book Now</button>
+</nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <p class="hero-tag">Premium Salon · City Center</p>
-    <h1>Your Finest <em>Look Awaits</em></h1>
-    <p class="hero-sub">Where craftsmanship meets elegance. Expert stylists, premium products, and an experience you'll
-      remember.</p>
-    <div class="hero-actions">
-      <button class="btn-primary" onclick="openChat()">Chat &amp; Book</button>
-      <button class="btn-ghost" onclick="document.getElementById('services').scrollIntoView()">Our Services</button>
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-tag">Premium Salon · City Center</p>
+  <h1>Your Finest <em>Look Awaits</em></h1>
+  <p class="hero-sub">Where craftsmanship meets elegance. Expert stylists, premium products, and an experience you'll remember.</p>
+  <div class="hero-actions">
+    <button class="btn-primary" onclick="openChat()">Chat &amp; Book</button>
+    <button class="btn-ghost" onclick="document.getElementById('services').scrollIntoView()">Our Services</button>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <p class="section-label">What We Offer</p>
+  <h2 class="section-title">Premium <em>Services</em></h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">✂️</div>
+      <div class="service-name">Hair Services</div>
+      <div class="service-desc">Precision cuts, expert colouring, and restorative treatments for every hair type.</div>
+      <div class="service-price">From ₹250</div>
     </div>
-    <div class="hero-scroll">
-      <div class="scroll-line"></div>
-      <span>Scroll</span>
+    <div class="service-card">
+      <div class="service-icon">✨</div>
+      <div class="service-name">Skin Care</div>
+      <div class="service-desc">Cleanups, facials, and de-tan treatments tailored to your skin's needs.</div>
+      <div class="service-price">From ₹699</div>
     </div>
-  </section>
-
-  <!-- SERVICES -->
-  <section class="section" id="services">
-    <p class="section-label">What We Offer</p>
-    <h2 class="section-title">Premium <em>Services</em></h2>
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="service-icon">✂️</div>
-        <div class="service-name">Hair Services</div>
-        <div class="service-desc">Precision cuts, expert colouring, and restorative treatments for every hair type.
-        </div>
-        <div class="service-price">From ₹250</div>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">✨</div>
-        <div class="service-name">Skin Care</div>
-        <div class="service-desc">Cleanups, facials, and de-tan treatments tailored to your skin's needs.</div>
-        <div class="service-price">From ₹699</div>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">💈</div>
-        <div class="service-name">Grooming</div>
-        <div class="service-desc">Beard styling, threading, waxing — refined grooming for every occasion.</div>
-        <div class="service-price">From ₹100</div>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">💍</div>
-        <div class="service-name">Bridal &amp; Special</div>
-        <div class="service-desc">Bespoke bridal makeup, groom packages, and party looks for your big day.</div>
-        <div class="service-price">From ₹2499</div>
-      </div>
+    <div class="service-card">
+      <div class="service-icon">💈</div>
+      <div class="service-name">Grooming</div>
+      <div class="service-desc">Beard styling, threading, waxing — refined grooming for every occasion.</div>
+      <div class="service-price">From ₹100</div>
     </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section class="section" id="about" style="background: var(--surface);">
-    <div class="about-grid">
-      <div class="about-visual">
-        <div class="about-visual-line"></div>
-      </div>
-      <div class="about-content">
-        <p class="section-label">Our Story</p>
-        <h2 class="section-title" style="margin-bottom:28px;">Crafted with <em>Passion</em></h2>
-        <p>Studio 5 was born from a simple belief — everyone deserves to feel extraordinary. Our team of expert stylists
-          blends technique with artistry to deliver results that speak for themselves.</p>
-        <p>From everyday cuts to bridal transformations, we bring the same level of dedication and precision to every
-          chair, every client, every time.</p>
-        <div class="stats-row">
-          <div class="stat">
-            <div class="stat-num">8+</div>
-            <div class="stat-label">Years</div>
-          </div>
-          <div class="stat">
-            <div class="stat-num">5k+</div>
-            <div class="stat-label">Clients</div>
-          </div>
-          <div class="stat">
-            <div class="stat-num">12</div>
-            <div class="stat-label">Experts</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- HOURS + LOCATION -->
-  <section class="section" id="info">
-    <p class="section-label">Find Us</p>
-    <h2 class="section-title">Visit <em>Studio 5</em></h2>
-    <div class="info-grid">
-      <div class="info-card">
-        <div class="info-card-title">Hours</div>
-        <div class="info-row"><span>Monday – Sunday</span><span class="info-highlight">10 AM – 8 PM</span></div>
-        <div class="info-row"><span>Walk-ins</span><span>Welcome</span></div>
-      </div>
-      <div class="info-card">
-        <div class="info-card-title">Location</div>
-        <div class="info-row"><span>Address</span><span>City Centre Mall, Ground Floor</span></div>
-        <div class="info-row"><span>Parking</span><span>Available</span></div>
-        <div class="info-row"><span>Bookings</span><span class="info-highlight">Chat with us →</span></div>
-        <div style="margin-top: 28px;">
-          <button class="btn-primary" onclick="openChat()" style="width:100%; font-size:11px;">Book via Chat</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-logo">Studio Five</div>
-    <p>© 2025 Studio 5. All rights reserved.</p>
-    <p style="color: var(--gold-dim); font-size:12px;">City Centre · 10 AM – 8 PM Daily</p>
-  </footer>
-
-  <!-- CHAT WIDGET -->
-  <div class="chat-wrapper">
-    <div class="chat-panel" id="chatPanel">
-
-      <div class="chat-header">
-        <div class="chat-avatar">S5</div>
-        <div class="chat-header-info">
-          <div class="chat-header-name">Studio 5 Assistant</div>
-          <div class="chat-header-status">
-            <span class="status-dot"></span> Online · Ready to book
-          </div>
-        </div>
-        <button class="chat-clear-btn" onclick="clearChat()" title="Clear chat">🗑</button>
-        <button class="chat-close-btn" onclick="toggleChat()" title="Close">✕</button>
-      </div>
-
-      <div class="chat-messages" id="chatMessages"></div>
-
-      <div class="quick-chips" id="quickChips">
-        <button class="quick-chip" onclick="quickSend('What services do you offer?')">Services</button>
-        <button class="quick-chip" onclick="quickSend('I want to book an appointment')">Book now</button>
-        <button class="quick-chip" onclick="quickSend('Tell me about bridal packages')">Bridal</button>
-        <button class="quick-chip" onclick="quickSend('What are your prices?')">Pricing</button>
-      </div>
-
-      <div class="chat-input-row">
-        <input id="chatInput" class="chat-input" placeholder="Ask anything..." autocomplete="off" />
-        <button class="chat-send-btn" onclick="sendMsg()">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
-          </svg>
-        </button>
-      </div>
-
-    </div>
-
-    <div class="fab-wrap">
-      <button class="chat-fab" id="chatFab" onclick="toggleChat()">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z" />
-        </svg>
-      </button>
-      <div class="fab-notif" id="fabNotif"></div>
+    <div class="service-card">
+      <div class="service-icon">💍</div>
+      <div class="service-name">Bridal &amp; Special</div>
+      <div class="service-desc">Bespoke bridal makeup, groom packages, and party looks for your big day.</div>
+      <div class="service-price">From ₹2499</div>
     </div>
   </div>
+</section>
 
-  <script>
-    const BACKEND_URL = "https://saloon-backend-so2b.onrender.com/chat";
-    const LEADS_URL = "https://saloon-backend-so2b.onrender.com/leads";
-    const BOOK_URL = "https://saloon-backend-so2b.onrender.com/book";
-
-    let chatOpen = false;
-    let greeted = false;
-    let formShown = false;   // guard: only show form once per phone detection
-    let userDeclined = false; // user explicitly said no to booking
-    let msgs = JSON.parse(sessionStorage.getItem("s5_chat_memory")) || [];
-
-    // ── Extracted context from conversation ──────────────────────────
-    let detectedService = "";
-    let detectedName = "";
-
-    function saveMemory() {
-      sessionStorage.setItem("s5_chat_memory", JSON.stringify(msgs));
-    }
-
-    function getTime() {
-      return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    }
-
-    function openChat() { if (!chatOpen) toggleChat(); }
-
-    function toggleChat() {
-      chatOpen = !chatOpen;
-      const panel = document.getElementById('chatPanel');
-      const notif = document.getElementById('fabNotif');
-      panel.classList.toggle('open', chatOpen);
-      if (chatOpen) {
-        notif.style.display = 'none';
-        renderMessages();
-        if (!greeted && msgs.length === 0) {
-          greeted = true;
-          setTimeout(() => addBotMsg("Hey there! ✨ Welcome to Studio 5. I'm here to help you book an appointment or answer any questions. What can I do for you today? 💫"), 500);
-        }
-        setTimeout(() => document.getElementById('chatInput').focus(), 320);
-      }
-    }
-
-    function renderMessages() {
-      const box = document.getElementById('chatMessages');
-      box.innerHTML = "";
-      msgs.forEach(m => {
-        if (m.type === 'form') renderFormCard(m, false);
-        else renderBubble(m.role, m.text, m.time, false);
-      });
-    }
-
-    function renderBubble(role, text, time, animate = true) {
-      const box = document.getElementById('chatMessages');
-      const div = document.createElement('div');
-      div.className = `msg ${role}`;
-      if (!animate) div.style.animation = 'none';
-      div.innerHTML = `<div class="msg-bubble">${text}</div><div class="msg-time">${time || ''}</div>`;
-      box.appendChild(div);
-      box.scrollTop = box.scrollHeight;
-    }
-
-    function addBotMsg(text) {
-      const time = getTime();
-      msgs.push({ role: 'bot', text, time });
-      saveMemory();
-      renderBubble('bot', text, time);
-    }
-
-    function showTyping() {
-      const box = document.getElementById('chatMessages');
-      const el = document.createElement('div');
-      el.className = 'msg bot typing-indicator';
-      el.id = 'typingIndicator';
-      el.innerHTML = `<div class="msg-bubble"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span></div>`;
-      box.appendChild(el);
-      box.scrollTop = box.scrollHeight;
-    }
-
-    function hideTyping() {
-      const el = document.getElementById('typingIndicator');
-      if (el) el.remove();
-    }
-
-    function quickSend(text) {
-      document.getElementById('chatInput').value = text;
-      sendMsg();
-    }
-
-    // ── Keyword extraction from chat history ────────────────────────
-    const SERVICE_MAP = [
-      { keys: ['haircut', 'cut', 'trim'], label: 'Haircut' },
-      { keys: ['colour', 'color', 'coloring', 'colouring', 'global'], label: 'Hair Colour' },
-      { keys: ['highlight', 'balayage'], label: 'Highlights / Balayage' },
-      { keys: ['keratin'], label: 'Keratin Treatment' },
-      { keys: ['hair spa', 'spa'], label: 'Hair Spa' },
-      { keys: ['facial'], label: 'Facial' },
-      { keys: ['thread'], label: 'Threading' },
-      { keys: ['wax'], label: 'Waxing' },
-      { keys: ['bridal', 'bride', 'wedding'], label: 'Bridal Package' },
-      { keys: ['manicure', 'mani'], label: 'Manicure' },
-      { keys: ['pedicure', 'pedi'], label: 'Pedicure' },
-      { keys: ['beard', 'groom'], label: 'Grooming' },
-    ];
-
-    function guessServiceFromHistory() {
-      // Scan user messages in REVERSE so the most recent service mentioned wins
-      const userMsgs = msgs.filter(m => m.role === 'user').reverse();
-      for (const msg of userMsgs) {
-        const txt = msg.text.toLowerCase();
-        for (const svc of SERVICE_MAP) {
-          if (svc.keys.some(k => txt.includes(k))) return svc.label;
-        }
-      }
-      return '';
-    }
-
-    function guessNameFromHistory() {
-      const patterns = [
-        /my name is\s+([A-Za-z]+(?:\s[A-Za-z]+)?)/i,
-        /i(?:'?m| am)\s+([A-Za-z]+(?:\s[A-Za-z]+)?)/i,
-        /this is\s+([A-Za-z]+(?:\s[A-Za-z]+)?)/i,
-        /call me\s+([A-Za-z]+(?:\s[A-Za-z]+)?)/i,
-        /name(?:'?s)?\s*[:\-]?\s*([A-Za-z]+(?:\s[A-Za-z]+)?)/i,
-      ];
-      const INVALID = new Set(['a', 'the', 'going', 'planning', 'interested', 'here', 'not', 'just', 'ok', 'yes', 'an', 'is', 'to', 'in', 'my']);
-      for (const m of msgs) {
-        if (m.role !== 'user') continue;
-        for (const p of patterns) {
-          const match = m.text.match(p);
-          if (match) {
-            const candidate = match[1].trim();
-            if (!INVALID.has(candidate.toLowerCase())) return candidate;
-          }
-        }
-      }
-      return '';
-    }
-
-    // ── Booking readiness detection ─────────────────────────────────
-    const BOOKING_TRIGGERS = [
-      'book', 'appointment', 'schedule', 'reserve', 'slot', 'want to come', 'visit', 'register',
-      'confirm', 'my number', 'phone', '10 digits', 'want to book', 'interested', 'fix',
-      'book a slot', 'slot for me', 'book me', 'get me', 'reserve me'
-    ];
-
-    function shouldShowForm(botReply) {
-      // Show form if bot reply asks for name OR phone — any of these signals
-      const lower = botReply.toLowerCase();
-      return (
-        lower.includes('your name') ||
-        lower.includes('may i have your name') ||
-        lower.includes('your number') ||
-        lower.includes('phone number') ||
-        lower.includes('mobile number') ||
-        lower.includes('contact number') ||
-        lower.includes('contact details') ||
-        lower.includes('name and number') ||
-        lower.includes('name so i can') ||
-        lower.includes('name to confirm') ||
-        lower.includes('share your name') ||
-        lower.includes('book your') ||
-        lower.includes('confirm your') ||
-        lower.includes('would you like to book') ||
-        lower.includes('like to book') ||
-        lower.includes('shall i book') ||
-        lower.includes('want to book') ||
-        lower.includes('quick form') ||
-        lower.includes('fill in the form') ||
-        lower.includes('fill the form') ||
-        lower.includes('form below') ||
-        lower.includes('booking form') ||
-        lower.includes('fill in below') ||
-        (lower.includes('name') && (lower.includes('confirm') || lower.includes('book') || lower.includes('appointment')))
-      );
-    }
-
-    // Detect if user typed a phone number directly in chat
-    function containsPhone(text) {
-      return /\b\d{10}\b/.test(text);
-    }
-
-    // ── Render booking form card inside chat ─────────────────────────
-    function renderFormCard(data = {}, addToHistory = true) {
-      // Remove any existing form card first so we never have duplicates
-      const existing = document.getElementById('bookingFormCard');
-      if (existing) {
-        existing.closest('.msg').remove();
-        msgs = msgs.filter(m => m.type !== 'form');
-      }
-
-      const service = data.service || detectedService || guessServiceFromHistory() || '';
-      const name = data.name || detectedName || guessNameFromHistory() || '';
-      const phone = data.phone || '';
-
-      if (addToHistory) {
-        msgs.push({ type: 'form', service, name, time: getTime() });
-        saveMemory();
-      }
-
-      const box = document.getElementById('chatMessages');
-      const wrapper = document.createElement('div');
-      wrapper.className = 'msg bot';
-      wrapper.style.maxWidth = '100%';
-      wrapper.style.width = '100%';
-
-      const serviceTagHTML = service
-        ? `<div class="booking-service-tag">✨ ${service}</div>`
-        : '';
-
-      const ALL_SLOTS = [
-        '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM',
-        '12:00 PM', '12:30 PM', '01:00 PM', '01:30 PM',
-        '02:00 PM', '02:30 PM', '03:00 PM', '03:30 PM',
-        '04:00 PM', '04:30 PM', '05:00 PM', '05:30 PM',
-        '06:00 PM', '06:30 PM', '07:00 PM', '07:30 PM'
-      ];
-
-      // Render form immediately with all slots enabled, then update booked ones async
-      wrapper.innerHTML = `
-      <div class="booking-form-card" id="bookingFormCard">
-        <div class="booking-form-title">💇‍♀️ Complete Your Booking</div>
-        <div class="booking-form-subtitle">Confirm your details and our team will call you shortly</div>
-        ${serviceTagHTML}
-        <div class="booking-field">
-          <label>Your Name</label>
-          <input id="bfName" type="text" placeholder="Enter your full name"
-            class="${name ? 'prefilled' : ''}" value="${name}" />
-        </div>
-        <div class="booking-field">
-          <label>Mobile Number</label>
-          <input id="bfPhone" type="tel" placeholder="10-digit mobile number" maxlength="10"
-            class="${phone ? 'prefilled field-valid' : ''}" value="${phone}" />
-        </div>
-        <div class="booking-field">
-          <label>Service Required</label>
-          <input id="bfService" type="text" placeholder="e.g. Haircut, Facial, Bridal…"
-            class="${service ? 'prefilled' : ''}" value="${service}" />
-        </div>
-        <div class="booking-field">
-          <label>Appointment Date</label>
-          <div class="date-tab-row" id="dateTabs">
-            ${(() => {
-          const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-          const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-          const today = new Date();
-          return [0, 1, 2, 3, 4, 5, 6].map(i => {
-            const d = new Date(today);
-            d.setDate(today.getDate() + i);
-            const label = i === 0 ? 'Today' : i === 1 ? 'Tomorrow' : days[d.getDay()];
-            const sub = d.getDate() + ' ' + months[d.getMonth()];
-            // const iso = d.toISOString().slice(0, 10);
-            const iso = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
-            return `<button type="button" class="date-tab${i === 0 ? ' active' : ''}" onclick="selectDate(this,'${iso}')" data-iso="${iso}">
-                  <span class="date-tab-day">${label}</span>
-                  <span class="date-tab-sub">${sub}</span>
-                </button>`;
-          }).join('');
-        })()}
-          </div>
-          <input type="hidden" id="bfDate" value="${(() => { const n = new Date(); return n.getFullYear() + '-' + String(n.getMonth()+1).padStart(2,'0') + '-' + String(n.getDate()).padStart(2,'0'); })()}" />
-        </div>
-        <div class="booking-field">
-          <span class="slot-picker-label" id="slotLabel">Available Slots — Today</span>
-          <div class="slot-grid" id="slotGrid"></div>
-          <div class="slot-err" id="slotErr">Please select a time slot</div>
-        </div>
-        <input type="hidden" id="bfSlot" value="" />
-        <button class="booking-submit-btn" id="bfSubmitBtn" onclick="submitBooking()">
-          Confirm Booking
-        </button>
-        <div class="booking-note">🔒 Your details are shared only with Studio 5</div>
+<!-- ABOUT -->
+<section class="section" id="about" style="background:var(--surface)">
+  <div class="about-grid">
+    <div class="about-visual"><div class="about-visual-line"></div></div>
+    <div class="about-content">
+      <p class="section-label">Our Story</p>
+      <h2 class="section-title" style="margin-bottom:28px">Crafted with <em>Passion</em></h2>
+      <p>Studio 5 was born from a simple belief — everyone deserves to feel extraordinary. Our team of expert stylists blends technique with artistry to deliver results that speak for themselves.</p>
+      <p>From everyday cuts to bridal transformations, we bring the same level of dedication and precision to every chair, every client, every time.</p>
+      <div class="stats-row">
+        <div class="stat"><div class="stat-num">8+</div><div class="stat-label">Years</div></div>
+        <div class="stat"><div class="stat-num">5k+</div><div class="stat-label">Clients</div></div>
+        <div class="stat"><div class="stat-num">12</div><div class="stat-label">Experts</div></div>
       </div>
-      <div class="msg-time">${getTime()}</div>
-    `;
+    </div>
+  </div>
+</section>
 
-      box.appendChild(wrapper);
-      box.scrollTop = box.scrollHeight;
+<!-- INFO -->
+<section class="section" id="info">
+  <p class="section-label">Find Us</p>
+  <h2 class="section-title">Visit <em>Studio 5</em></h2>
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="info-card-title">Hours</div>
+      <div class="info-row"><span>Monday – Sunday</span><span class="info-highlight">10 AM – 8 PM</span></div>
+      <div class="info-row"><span>Walk-ins</span><span>Welcome</span></div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-title">Location</div>
+      <div class="info-row"><span>Address</span><span>City Centre Mall, Ground Floor</span></div>
+      <div class="info-row"><span>Parking</span><span>Available</span></div>
+      <div class="info-row"><span>Bookings</span><span class="info-highlight">Chat with us →</span></div>
+      <div style="margin-top:28px">
+        <button class="btn-primary" onclick="openChat()" style="width:100%;font-size:11px">Book via Chat</button>
+      </div>
+    </div>
+  </div>
+</section>
 
-      // Render slots for today on form open
-      renderSlots(new Date().toISOString().slice(0, 10));
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Studio Five</div>
+  <p>© 2025 Studio 5. All rights reserved.</p>
+  <p style="color:var(--gold-dim);font-size:12px">City Centre · 10 AM – 8 PM Daily</p>
+</footer>
 
-      // Live validation
-      const phoneInput = document.getElementById('bfPhone');
-      phoneInput.addEventListener('input', () => {
-        phoneInput.value = phoneInput.value.replace(/\D/g, '');
-        if (phoneInput.value.length === 10) phoneInput.classList.add('field-valid');
-        else phoneInput.classList.remove('field-valid');
-      });
+<!-- CHAT WIDGET -->
+<div class="chat-wrapper">
+  <div class="chat-panel" id="chatPanel">
+    <div class="chat-header">
+      <div class="chat-avatar">S5</div>
+      <div class="chat-header-info">
+        <div class="chat-header-name">Studio 5 Assistant</div>
+        <div class="chat-header-status"><span class="status-dot"></span> Online · Ready to book</div>
+      </div>
+      <button class="chat-clear-btn" onclick="clearChat()" title="Clear chat">🗑</button>
+      <button class="chat-close-btn" onclick="toggleChat()" title="Close">✕</button>
+    </div>
+    <div class="chat-messages" id="chatMessages"></div>
+    <div class="quick-chips" id="quickChips">
+      <button class="quick-chip" onclick="quickSend('What services do you offer?')">Services</button>
+      <button class="quick-chip" onclick="quickSend('I want to book an appointment')">Book now</button>
+      <button class="quick-chip" onclick="quickSend('Tell me about bridal packages')">Bridal</button>
+      <button class="quick-chip" onclick="quickSend('What are your prices?')">Pricing</button>
+    </div>
+    <div class="chat-input-row">
+      <input id="chatInput" class="chat-input" placeholder="Ask anything..." autocomplete="off" />
+      <button class="chat-send-btn" onclick="sendMsg()">
+        <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="fab-wrap">
+    <button class="chat-fab" id="chatFab" onclick="toggleChat()">
+      <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+    </button>
+    <div class="fab-notif" id="fabNotif"></div>
+  </div>
+</div>
 
-      // Enter key submits from any field
-      ['bfName', 'bfPhone', 'bfService'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.addEventListener('keydown', e => {
-          if (e.key === 'Enter') { e.preventDefault(); submitBooking(); }
-        });
-      });
+<script>
+  const BACKEND_URL = "https://saloon-backend-so2b.onrender.com/chat";
+  const LEADS_URL   = "https://saloon-backend-so2b.onrender.com/leads";
+  const BOOK_URL    = "https://saloon-backend-so2b.onrender.com/book";
 
-      // Async: mark booked slots after form is already visible
-      fetchBookedSlots().then(bookedSlots => {
-        if (!bookedSlots.length) return;
-        document.querySelectorAll('.slot-btn').forEach(btn => {
-          const slot = btn.textContent.trim();
-          if (bookedSlots.includes(slot)) {
-            btn.classList.add('booked');
-            btn.disabled = true;
-            btn.onclick = null;
-            btn.title = 'Already booked';
-            btn.textContent = slot + ' ✗';
-            if (document.getElementById('bfSlot').value === slot) {
-              document.getElementById('bfSlot').value = '';
-              btn.classList.remove('selected');
-            }
-          }
-        });
-      });
-    }
+  let chatOpen=false,greeted=false,formShown=false,userDeclined=false;
+  let msgs=JSON.parse(sessionStorage.getItem("s5_chat_memory"))||[];
+  let detectedService="",detectedName="";
 
-    const ALL_SLOTS = [
-      '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM',
-      '12:00 PM', '12:30 PM', '01:00 PM', '01:30 PM',
-      '02:00 PM', '02:30 PM', '03:00 PM', '03:30 PM',
-      '04:00 PM', '04:30 PM', '05:00 PM', '05:30 PM',
-      '06:00 PM', '06:30 PM', '07:00 PM', '07:30 PM'
-    ];
+  function saveMemory(){sessionStorage.setItem("s5_chat_memory",JSON.stringify(msgs))}
+  function getTime(){return new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}
+  function openChat(){if(!chatOpen)toggleChat()}
 
-    function selectDate(btn, iso) {
-      document.querySelectorAll('.date-tab').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById('bfDate').value = iso;
-      const today = new Date().toISOString().slice(0, 10);
-      const label = iso === today ? 'Today' : btn.querySelector('.date-tab-day').textContent;
-      document.getElementById('slotLabel').textContent = `Available Slots — ${label}`;
-      document.getElementById('bfSlot').value = '';
-      renderSlots(iso);
-    }
-
-    async function renderSlots(selectedDate) {
-      const grid = document.getElementById('slotGrid');
-      const n = new Date();
-      const today = n.getFullYear() + '-' + String(n.getMonth()+1).padStart(2,'0') + '-' + String(n.getDate()).padStart(2,'0');
-      const isToday = selectedDate === today;
-      const now = new Date();
-      const cutoff = new Date(now.getTime() + 30 * 60 * 1000);
-
-      // Fetch booked slots for selected date
-      let booked = [];
-      try {
-        const res = await fetch(LEADS_URL);
-        if (res.ok) {
-          const data = await res.json();
-          booked = (data.leads || [])
-            .filter(l => (l.booking_date || l.date) === selectedDate && l.slot)
-            .map(l => l.slot);
-        }
-      } catch (e) { }
-
-      grid.innerHTML = ALL_SLOTS.map(s => {
-        const isBooked = booked.includes(s);
-        let isPast = false;
-        if (isToday) {
-          const [time, mer] = s.split(' ');
-          let [h, m] = time.split(':').map(Number);
-          if (mer === 'PM' && h !== 12) h += 12;
-          if (mer === 'AM' && h === 12) h = 0;
-          const slotDate = new Date(); slotDate.setHours(h, m, 0, 0);
-          isPast = slotDate < cutoff;
-        }
-        const disabled = isBooked || isPast;
-        const cls = isBooked ? ' booked' : isPast ? ' past' : '';
-        const label = isBooked ? s + ' ✗' : isPast ? s + ' ·' : s;
-        const title = isBooked ? 'Already booked' : isPast ? 'Time passed' : '';
-        return disabled
-          ? `<button type="button" class="slot-btn${cls}" disabled title="${title}">${label}</button>`
-          : `<button type="button" class="slot-btn${cls}" onclick="selectSlot(this,'${s}')">${label}</button>`;
-      }).join('');
-    }
-
-    function selectSlot(btn, slot) {
-      document.querySelectorAll('.slot-btn').forEach(b => b.classList.remove('selected'));
-      btn.classList.add('selected');
-      document.getElementById('bfSlot').value = slot;
-      document.getElementById('slotErr').style.display = 'none';
-    }
-
-    async function fetchBookedSlots() {
-      try {
-        const res = await fetch(LEADS_URL);
-        if (!res.ok) return [];
-        const data = await res.json();
-        const today = new Date().toISOString().slice(0, 10);
-        return (data.leads || [])
-          .filter(l => l.date === today && l.slot)
-          .map(l => l.slot);
-      } catch (e) {
-        console.warn('fetchBookedSlots failed:', e);
-        return [];
+  function toggleChat(){
+    chatOpen=!chatOpen;
+    const panel=document.getElementById('chatPanel');
+    const notif=document.getElementById('fabNotif');
+    panel.classList.toggle('open',chatOpen);
+    if(chatOpen){
+      notif.style.display='none';
+      renderMessages();
+      if(!greeted&&msgs.length===0){
+        greeted=true;
+        setTimeout(()=>addBotMsg("Hey there! ✨ Welcome to Studio 5. I'm here to help you book an appointment or answer any questions. What can I do for you today? 💫"),500);
       }
+      setTimeout(()=>document.getElementById('chatInput').focus(),320);
     }
+  }
 
-    // ── Submit booking form ─────────────────────────────────────────
-    async function submitBooking() {
-      const nameEl = document.getElementById('bfName');
-      const phoneEl = document.getElementById('bfPhone');
-      const serviceEl = document.getElementById('bfService');
-      const btn = document.getElementById('bfSubmitBtn');
-
-      const name = nameEl.value.trim();
-      const phone = phoneEl.value.trim();
-      const service = serviceEl.value.trim() || 'General Enquiry';
-      const slotEl = document.getElementById('bfSlot');
-      const slot = slotEl ? slotEl.value : '';
-
-      // Validate
-      let valid = true;
-      if (!name) { nameEl.classList.add('field-err'); valid = false; } else nameEl.classList.remove('field-err');
-      if (!/^\d{10}$/.test(phone)) { phoneEl.classList.add('field-err'); valid = false; } else phoneEl.classList.remove('field-err');
-      if (!slot) {
-        const slotErr = document.getElementById('slotErr');
-        if (slotErr) slotErr.style.display = 'block';
-        valid = false;
-      }
-      if (!valid) return;
-
-      btn.disabled = true;
-      btn.textContent = 'Submitting…';
-
-      try {
-        const fullHistory = msgs.slice(-20).map(m => ({
-          role: m.role === 'bot' ? 'assistant' : 'user',
-          content: m.text || ''
-        })).filter(m => m.content);
-
-        const dateEl = document.getElementById('bfDate');
-        const date = dateEl ? dateEl.value : new Date().toISOString().slice(0, 10);
-        const syntheticMsg = `My name is ${name} and my number is ${phone}. I want to book: ${service} at ${slot} on ${date}.`;
-
-        // Use AbortController for timeout
-        const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 15000);
-
-        let data;
-        try {
-          const res = await fetch(BOOK_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              name: name,
-              phone: phone,
-              service: service,
-              slot: slot,
-              date: date
-            }),
-            signal: controller.signal
-          });
-          clearTimeout(timeout);
-          if (!res.ok) throw new Error(`Server error: HTTP ${res.status}`);
-          data = await res.json();
-          if (!data.success) throw new Error(data.error || 'Booking failed');
-
-        } catch (fetchErr) {
-          clearTimeout(timeout);
-          if (fetchErr.name === 'AbortError') throw new Error('Request timed out. Please try again.');
-          throw fetchErr;
-        }
-        // Remove the form card from DOM
-        const card = document.getElementById('bookingFormCard');
-        if (card) card.closest('.msg').remove();
-        msgs = msgs.filter(m => m.type !== 'form');
-
-        // Show success message
-        const isToday = date === new Date().toISOString().slice(0, 10);
-        const dateLabel = isToday
-          ? 'today'
-          : new Date(date + 'T00:00:00').toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
-
-        const successMsg = `✅ Booking confirmed, ${name}! Your ${service} is scheduled for ${slot} on ${dateLabel}. Our Studio 5 team will call you on ${phone} to confirm. We can't wait to pamper you! 💇‍♀️✨`;
-        addBotMsg(successMsg);
-
-        formShown = false;
-        saveMemory();
-
-      } catch (e) {
-        console.error('Booking submit error:', e);
-        // Re-enable button so user can retry
-        const b = document.getElementById('bfSubmitBtn');
-        if (b) {
-          b.disabled = false;
-          b.textContent = 'Retry — Confirm Booking';
-          b.style.background = 'linear-gradient(135deg, #8a3a3a, #e05050)';
-        }
-        // Show error inside form
-        const note = document.querySelector('.booking-note');
-        if (note) {
-          note.style.color = '#e05050';
-          note.textContent = '⚠️ ' + (e.message || 'Something went wrong. Please try again.');
-        }
-      }
-    }
-
-    // ── Main chat send ──────────────────────────────────────────────
-    async function sendMsg() {
-      const input = document.getElementById('chatInput');
-      const text = input.value.trim();
-      if (!text) return;
-
-      // Phone typed in chat — just let it flow normally to the backend
-
-      input.value = '';
-      const time = getTime();
-      msgs.push({ role: 'user', text, time });
-      saveMemory();
-      renderBubble('user', text, time);
-      showTyping();
-
-      const history = msgs.slice(-20).slice(0, -1)
-        .filter(m => m.text)
-        .map(m => ({
-          role: m.role === 'bot' ? 'assistant' : 'user',
-          content: m.text
-        }));
-
-      const lowerText = text.toLowerCase();
-
-      // Track if user explicitly declined booking
-      const userDismissed = /(no need|no booking|nono|no no|dont (want|need)|don't (want|need)|just (checking|asking|browsing|price|prices)|only (price|pricing|info|details)|not (now|yet|interested)|maybe later|skip|i said no)/i.test(lowerText);
-      if (userDismissed) { userDeclined = true; formShown = true; }
-
-      // Only unlock if user clearly re-engages with booking
-      // Re-interest: explicit booking words OR simple yes/ok/sure when bot offered booking
-      const lastBotMsg = msgs.filter(m => m.role === 'bot' && m.text).slice(-1)[0];
-      const lastBotOfferedBooking = lastBotMsg && /(book|appointment|schedule|confirm|would you like)/i.test(lastBotMsg.text);
-      const simpleAffirmative = /^(yes|yeah|yep|yup|sure|ok|okay|alright|sounds good|go ahead|please|do it|confirm)[.!,\s]*$/i.test(lowerText);
-      const userReInterested = /\b(book|booking|yes.*book|want.*book|ready to book|book now|book a slot|book me|book it|i want (a |to )?(haircut|facial|keratin|wax|bridal|spa|manicure|pedicure|appointment|slot)|im interested|i'm interested|yes.*appointment|take appointment|fix appointment|slot for me|make a booking|get me a slot|reserve a slot)\b/i.test(lowerText)
-        || (simpleAffirmative && lastBotOfferedBooking);
-      if (userReInterested) { userDeclined = false; }
-
-      // Detect booking intent — blocked if user declined
-      const userWantsToBook = !formShown && !userDeclined && BOOKING_TRIGGERS.some(t => lowerText.includes(t));
-
-      try {
-        const res = await fetch(BACKEND_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: text, history })
-        });
-        const data = await res.json();
-        hideTyping();
-
-        const reply = data.reply || "I'm here to help! 😊";
-
-        // Show form whenever bot says the quick form phrase — always, ignoring userDeclined
-        // ONLY trigger form when bot explicitly says so — bot is single source of truth
-        const botSaysForm = reply.toLowerCase().includes('quick form') ||
-          reply.toLowerCase().includes('form below') ||
-          reply.toLowerCase().includes('fill in the form') ||
-          reply.toLowerCase().includes('fill the form');
-        const formTrigger = botSaysForm;
-        if (botSaysForm) userDeclined = false;
-
-        addBotMsg(reply);
-
-        if (formTrigger) {
-          detectedService = guessServiceFromHistory();
-          detectedName = guessNameFromHistory();
-          setTimeout(() => {
-            renderFormCard({ service: detectedService, name: detectedName }, true);
-          }, 600);
-        }
-
-      } catch (e) {
-        hideTyping();
-        addBotMsg("Sorry, couldn't reach the salon right now. Please try again! 🔌");
-      }
-    }
-
-    // ── Clear chat ──────────────────────────────────────────────────
-    function clearChat() {
-      if (!confirm("Clear this conversation?")) return;
-      sessionStorage.removeItem("s5_chat_memory");
-      msgs = []; greeted = false; formShown = false; userDeclined = false;
-      detectedService = ''; detectedName = '';
-      document.getElementById("chatMessages").innerHTML = "";
-      setTimeout(() => {
-        addBotMsg("Fresh start ✨ Welcome to Studio 5. How can I help you today?");
-      }, 300);
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('chatInput').addEventListener('keydown', e => {
-        if (e.key === 'Enter') { e.preventDefault(); sendMsg(); }
-      });
-      setTimeout(() => {
-        if (!chatOpen) document.getElementById('fabNotif').style.display = 'block';
-      }, 3000);
-      fetch('https://saloon-backend-so2b.onrender.com/ping').catch(() => { });
+  function renderMessages(){
+    const box=document.getElementById('chatMessages');
+    box.innerHTML="";
+    msgs.forEach(m=>{
+      if(m.type==='form')renderFormCard(m,false);
+      else renderBubble(m.role,m.text,m.time,false);
     });
-  </script>
-</body>
+  }
 
+  function renderBubble(role,text,time,animate=true){
+    const box=document.getElementById('chatMessages');
+    const div=document.createElement('div');
+    div.className=`msg ${role}`;
+    if(!animate)div.style.animation='none';
+    div.innerHTML=`<div class="msg-bubble">${text}</div><div class="msg-time">${time||''}</div>`;
+    box.appendChild(div);
+    box.scrollTop=box.scrollHeight;
+  }
+
+  function addBotMsg(text){
+    const time=getTime();
+    msgs.push({role:'bot',text,time});
+    saveMemory();
+    renderBubble('bot',text,time);
+  }
+
+  function showTyping(){
+    const box=document.getElementById('chatMessages');
+    const el=document.createElement('div');
+    el.className='msg bot typing-indicator';
+    el.id='typingIndicator';
+    el.innerHTML=`<div class="msg-bubble"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span></div>`;
+    box.appendChild(el);
+    box.scrollTop=box.scrollHeight;
+  }
+
+  function hideTyping(){const el=document.getElementById('typingIndicator');if(el)el.remove()}
+  function quickSend(text){document.getElementById('chatInput').value=text;sendMsg()}
+
+  const SERVICE_MAP=[
+    {keys:['haircut','cut','trim'],label:'Haircut'},
+    {keys:['colour','color','coloring','colouring','global'],label:'Hair Colour'},
+    {keys:['highlight','balayage'],label:'Highlights / Balayage'},
+    {keys:['keratin'],label:'Keratin Treatment'},
+    {keys:['hair spa','spa'],label:'Hair Spa'},
+    {keys:['facial'],label:'Facial'},
+    {keys:['thread'],label:'Threading'},
+    {keys:['wax'],label:'Waxing'},
+    {keys:['bridal','bride','wedding'],label:'Bridal Package'},
+    {keys:['manicure','mani'],label:'Manicure'},
+    {keys:['pedicure','pedi'],label:'Pedicure'},
+    {keys:['beard','groom'],label:'Grooming'},
+  ];
+
+  function guessServiceFromHistory(){
+    const userMsgs=msgs.filter(m=>m.role==='user').reverse();
+    for(const msg of userMsgs){
+      const txt=msg.text.toLowerCase();
+      for(const svc of SERVICE_MAP){if(svc.keys.some(k=>txt.includes(k)))return svc.label}
+    }
+    return '';
+  }
+
+  function guessNameFromHistory(){
+    const patterns=[
+      /my name is\s+([A-Za-z]+(?:\s[A-Za-z]+)?)/i,
+      /i(?:'?m| am)\s+([A-Za-z]+(?:\s[A-Za-z]+)?)/i,
+      /this is\s+([A-Za-z]+(?:\s[A-Za-z]+)?)/i,
+      /call me\s+([A-Za-z]+(?:\s[A-Za-z]+)?)/i,
+      /name(?:'?s)?\s*[:\-]?\s*([A-Za-z]+(?:\s[A-Za-z]+)?)/i,
+    ];
+    const INVALID=new Set(['a','the','going','planning','interested','here','not','just','ok','yes','an','is','to','in','my']);
+    for(const m of msgs){
+      if(m.role!=='user')continue;
+      for(const p of patterns){
+        const match=m.text.match(p);
+        if(match){const c=match[1].trim();if(!INVALID.has(c.toLowerCase()))return c}
+      }
+    }
+    return '';
+  }
+
+  const BOOKING_TRIGGERS=['book','appointment','schedule','reserve','slot','want to come','visit','register','confirm','my number','phone','10 digits','want to book','interested','fix','book a slot','slot for me','book me','get me','reserve me'];
+
+  function renderFormCard(data={},addToHistory=true){
+    const existing=document.getElementById('bookingFormCard');
+    if(existing){existing.closest('.msg').remove();msgs=msgs.filter(m=>m.type!=='form')}
+
+    const service=data.service||detectedService||guessServiceFromHistory()||'';
+    const name=data.name||detectedName||guessNameFromHistory()||'';
+    const phone=data.phone||'';
+
+    if(addToHistory){msgs.push({type:'form',service,name,time:getTime()});saveMemory()}
+
+    const box=document.getElementById('chatMessages');
+    const wrapper=document.createElement('div');
+    wrapper.className='msg bot';
+    wrapper.style.maxWidth='100%';
+    wrapper.style.width='100%';
+
+    const serviceTagHTML=service?`<div class="booking-service-tag">✨ ${service}</div>`:'';
+
+    wrapper.innerHTML=`
+    <div class="booking-form-card" id="bookingFormCard">
+      <div class="booking-form-title">💇‍♀️ Complete Your Booking</div>
+      <div class="booking-form-subtitle">Confirm your details and our team will call you shortly</div>
+      ${serviceTagHTML}
+      <div class="booking-field">
+        <label>Your Name</label>
+        <input id="bfName" type="text" placeholder="Enter your full name" class="${name?'prefilled':''}" value="${name}"/>
+      </div>
+      <div class="booking-field">
+        <label>Mobile Number</label>
+        <input id="bfPhone" type="tel" placeholder="10-digit mobile number" maxlength="10" class="${phone?'prefilled field-valid':''}" value="${phone}"/>
+      </div>
+      <div class="booking-field">
+        <label>Service Required</label>
+        <input id="bfService" type="text" placeholder="e.g. Haircut, Facial, Bridal…" class="${service?'prefilled':''}" value="${service}"/>
+      </div>
+      <div class="booking-field">
+        <label>Appointment Date</label>
+        <div class="date-tab-row" id="dateTabs">
+          ${(()=>{
+            const days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+            const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+            const today=new Date();
+            return[0,1,2,3,4,5,6].map(i=>{
+              const d=new Date(today);d.setDate(today.getDate()+i);
+              const label=i===0?'Today':i===1?'Tomorrow':days[d.getDay()];
+              const sub=d.getDate()+' '+months[d.getMonth()];
+              const iso=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+              return`<button type="button" class="date-tab${i===0?' active':''}" onclick="selectDate(this,'${iso}')" data-iso="${iso}">
+                <span class="date-tab-day">${label}</span>
+                <span class="date-tab-sub">${sub}</span>
+              </button>`;
+            }).join('');
+          })()}
+        </div>
+        <input type="hidden" id="bfDate" value="${(()=>{const n=new Date();return n.getFullYear()+'-'+String(n.getMonth()+1).padStart(2,'0')+'-'+String(n.getDate()).padStart(2,'0')})()}"/>
+      </div>
+      <div class="booking-field">
+        <span class="slot-picker-label" id="slotLabel">Available Slots — Today</span>
+        <div class="slot-grid" id="slotGrid"></div>
+        <div class="slot-err" id="slotErr">Please select a time slot</div>
+      </div>
+      <input type="hidden" id="bfSlot" value=""/>
+      <button class="booking-submit-btn" id="bfSubmitBtn" onclick="submitBooking()">Confirm Booking</button>
+      <div class="booking-note">🔒 Your details are shared only with Studio 5</div>
+    </div>
+    <div class="msg-time">${getTime()}</div>`;
+
+    box.appendChild(wrapper);
+    box.scrollTop=box.scrollHeight;
+
+    const n=new Date();
+    const todayIso=n.getFullYear()+'-'+String(n.getMonth()+1).padStart(2,'0')+'-'+String(n.getDate()).padStart(2,'0');
+    renderSlots(todayIso);
+
+    const phoneInput=document.getElementById('bfPhone');
+    phoneInput.addEventListener('input',()=>{
+      phoneInput.value=phoneInput.value.replace(/\D/g,'');
+      if(phoneInput.value.length===10)phoneInput.classList.add('field-valid');
+      else phoneInput.classList.remove('field-valid');
+    });
+
+    ['bfName','bfPhone','bfService'].forEach(id=>{
+      const el=document.getElementById(id);
+      if(el)el.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();submitBooking()}});
+    });
+
+    fetchBookedSlots().then(bookedSlots=>{
+      if(!bookedSlots.length)return;
+      document.querySelectorAll('.slot-btn').forEach(btn=>{
+        const slot=btn.textContent.trim();
+        if(bookedSlots.includes(slot)){
+          btn.classList.add('booked');btn.disabled=true;btn.onclick=null;
+          btn.title='Already booked';btn.textContent=slot+' ✗';
+          if(document.getElementById('bfSlot').value===slot){
+            document.getElementById('bfSlot').value='';btn.classList.remove('selected');
+          }
+        }
+      });
+    });
+  }
+
+  const ALL_SLOTS=['10:00 AM','10:30 AM','11:00 AM','11:30 AM','12:00 PM','12:30 PM','01:00 PM','01:30 PM','02:00 PM','02:30 PM','03:00 PM','03:30 PM','04:00 PM','04:30 PM','05:00 PM','05:30 PM','06:00 PM','06:30 PM','07:00 PM','07:30 PM'];
+
+  function selectDate(btn,iso){
+    document.querySelectorAll('.date-tab').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('bfDate').value=iso;
+    const n=new Date();
+    const today=n.getFullYear()+'-'+String(n.getMonth()+1).padStart(2,'0')+'-'+String(n.getDate()).padStart(2,'0');
+    const label=iso===today?'Today':btn.querySelector('.date-tab-day').textContent;
+    document.getElementById('slotLabel').textContent=`Available Slots — ${label}`;
+    document.getElementById('bfSlot').value='';
+    renderSlots(iso);
+  }
+
+  async function renderSlots(selectedDate){
+    const grid=document.getElementById('slotGrid');
+    const n=new Date();
+    const today=n.getFullYear()+'-'+String(n.getMonth()+1).padStart(2,'0')+'-'+String(n.getDate()).padStart(2,'0');
+    const isToday=selectedDate===today;
+    const now=new Date();
+    const cutoff=new Date(now.getTime()+30*60*1000);
+    let booked=[];
+    try{
+      const res=await fetch(LEADS_URL);
+      if(res.ok){
+        const data=await res.json();
+        booked=(data.leads||[]).filter(l=>(l.booking_date||l.date)===selectedDate&&l.slot).map(l=>l.slot);
+      }
+    }catch(e){}
+    grid.innerHTML=ALL_SLOTS.map(s=>{
+      const isBooked=booked.includes(s);
+      let isPast=false;
+      if(isToday){
+        const[time,mer]=s.split(' ');let[h,m]=time.split(':').map(Number);
+        if(mer==='PM'&&h!==12)h+=12;if(mer==='AM'&&h===12)h=0;
+        const slotDate=new Date();slotDate.setHours(h,m,0,0);isPast=slotDate<cutoff;
+      }
+      const disabled=isBooked||isPast;
+      const cls=isBooked?' booked':isPast?' past':'';
+      const label=isBooked?s+' ✗':isPast?s+' ·':s;
+      const title=isBooked?'Already booked':isPast?'Time passed':'';
+      return disabled
+        ?`<button type="button" class="slot-btn${cls}" disabled title="${title}">${label}</button>`
+        :`<button type="button" class="slot-btn${cls}" onclick="selectSlot(this,'${s}')">${label}</button>`;
+    }).join('');
+  }
+
+  function selectSlot(btn,slot){
+    document.querySelectorAll('.slot-btn').forEach(b=>b.classList.remove('selected'));
+    btn.classList.add('selected');
+    document.getElementById('bfSlot').value=slot;
+    document.getElementById('slotErr').style.display='none';
+  }
+
+  async function fetchBookedSlots(){
+    try{
+      const res=await fetch(LEADS_URL);if(!res.ok)return[];
+      const data=await res.json();
+      const n=new Date();
+      const today=n.getFullYear()+'-'+String(n.getMonth()+1).padStart(2,'0')+'-'+String(n.getDate()).padStart(2,'0');
+      return(data.leads||[]).filter(l=>l.date===today&&l.slot).map(l=>l.slot);
+    }catch(e){return[]}
+  }
+
+  async function submitBooking(){
+    const nameEl=document.getElementById('bfName');
+    const phoneEl=document.getElementById('bfPhone');
+    const serviceEl=document.getElementById('bfService');
+    const btn=document.getElementById('bfSubmitBtn');
+    const name=nameEl.value.trim();
+    const phone=phoneEl.value.trim();
+    const service=serviceEl.value.trim()||'General Enquiry';
+    const slotEl=document.getElementById('bfSlot');
+    const slot=slotEl?slotEl.value:'';
+
+    let valid=true;
+    if(!name){nameEl.classList.add('field-err');valid=false}else nameEl.classList.remove('field-err');
+    if(!/^\d{10}$/.test(phone)){phoneEl.classList.add('field-err');valid=false}else phoneEl.classList.remove('field-err');
+    if(!slot){const se=document.getElementById('slotErr');if(se)se.style.display='block';valid=false}
+    if(!valid)return;
+
+    btn.disabled=true;btn.textContent='Submitting…';
+
+    try{
+      const fullHistory=msgs.slice(-20).map(m=>({role:m.role==='bot'?'assistant':'user',content:m.text||''})).filter(m=>m.content);
+      const dateEl=document.getElementById('bfDate');
+      const date=dateEl?dateEl.value:(()=>{const n=new Date();return n.getFullYear()+'-'+String(n.getMonth()+1).padStart(2,'0')+'-'+String(n.getDate()).padStart(2,'0')})();
+
+      const controller=new AbortController();
+      const timeout=setTimeout(()=>controller.abort(),15000);
+      let data;
+      try{
+        const res=await fetch(BOOK_URL,{
+          method:'POST',headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({name,phone,service,slot,date}),
+          signal:controller.signal
+        });
+        clearTimeout(timeout);
+        if(!res.ok)throw new Error(`Server error: HTTP ${res.status}`);
+        data=await res.json();
+        if(!data.success)throw new Error(data.error||'Booking failed');
+      }catch(fetchErr){
+        clearTimeout(timeout);
+        if(fetchErr.name==='AbortError')throw new Error('Request timed out. Please try again.');
+        throw fetchErr;
+      }
+
+      const card=document.getElementById('bookingFormCard');
+      if(card)card.closest('.msg').remove();
+      msgs=msgs.filter(m=>m.type!=='form');
+
+      const n=new Date();
+      const todayIso=n.getFullYear()+'-'+String(n.getMonth()+1).padStart(2,'0')+'-'+String(n.getDate()).padStart(2,'0');
+      const isToday=date===todayIso;
+      const dateLabel=isToday?'today':new Date(date+'T00:00:00').toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
+      addBotMsg(`✅ Booking confirmed, ${name}! Your ${service} is scheduled for ${slot} on ${dateLabel}. Our Studio 5 team will call you on ${phone} to confirm. We can't wait to pamper you! 💇‍♀️✨`);
+      formShown=false;saveMemory();
+
+    }catch(e){
+      console.error('Booking submit error:',e);
+      const b=document.getElementById('bfSubmitBtn');
+      if(b){b.disabled=false;b.textContent='Retry — Confirm Booking';b.style.background='linear-gradient(135deg,#8a3a3a,#e05050)'}
+      const note=document.querySelector('.booking-note');
+      if(note){note.style.color='#e05050';note.textContent='⚠️ '+(e.message||'Something went wrong. Please try again.')}
+    }
+  }
+
+  async function sendMsg(){
+    const input=document.getElementById('chatInput');
+    const text=input.value.trim();if(!text)return;
+    input.value='';
+    const time=getTime();
+    msgs.push({role:'user',text,time});saveMemory();
+    renderBubble('user',text,time);showTyping();
+
+    const history=msgs.slice(-20).slice(0,-1).filter(m=>m.text).map(m=>({role:m.role==='bot'?'assistant':'user',content:m.text}));
+    const lowerText=text.toLowerCase();
+
+    const userDismissed=/(no need|no booking|nono|no no|dont (want|need)|don't (want|need)|just (checking|asking|browsing|price|prices)|only (price|pricing|info|details)|not (now|yet|interested)|maybe later|skip|i said no)/i.test(lowerText);
+    if(userDismissed){userDeclined=true;formShown=true}
+
+    const lastBotMsg=msgs.filter(m=>m.role==='bot'&&m.text).slice(-1)[0];
+    const lastBotOfferedBooking=lastBotMsg&&/(book|appointment|schedule|confirm|would you like)/i.test(lastBotMsg.text);
+    const simpleAffirmative=/^(yes|yeah|yep|yup|sure|ok|okay|alright|sounds good|go ahead|please|do it|confirm)[.!,\s]*$/i.test(lowerText);
+    const userReInterested=/\b(book|booking|yes.*book|want.*book|ready to book|book now|book a slot|book me|book it|i want (a |to )?(haircut|facial|keratin|wax|bridal|spa|manicure|pedicure|appointment|slot)|im interested|i'm interested|yes.*appointment|take appointment|fix appointment|slot for me|make a booking|get me a slot|reserve a slot)\b/i.test(lowerText)||(simpleAffirmative&&lastBotOfferedBooking);
+    if(userReInterested)userDeclined=false;
+
+    try{
+      const res=await fetch(BACKEND_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:text,history})});
+      const data=await res.json();
+      hideTyping();
+      const reply=data.reply||"I'm here to help! 😊";
+      const botSaysForm=reply.toLowerCase().includes('quick form')||reply.toLowerCase().includes('form below')||reply.toLowerCase().includes('fill in the form')||reply.toLowerCase().includes('fill the form');
+      if(botSaysForm)userDeclined=false;
+      addBotMsg(reply);
+      if(botSaysForm){
+        detectedService=guessServiceFromHistory();detectedName=guessNameFromHistory();
+        setTimeout(()=>renderFormCard({service:detectedService,name:detectedName},true),600);
+      }
+    }catch(e){hideTyping();addBotMsg("Sorry, couldn't reach the salon right now. Please try again! 🔌")}
+  }
+
+  function clearChat(){
+    if(!confirm("Clear this conversation?"))return;
+    sessionStorage.removeItem("s5_chat_memory");
+    msgs=[];greeted=false;formShown=false;userDeclined=false;detectedService='';detectedName='';
+    document.getElementById("chatMessages").innerHTML="";
+    setTimeout(()=>addBotMsg("Fresh start ✨ Welcome to Studio 5. How can I help you today?"),300);
+  }
+
+  document.addEventListener('DOMContentLoaded',()=>{
+    document.getElementById('chatInput').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();sendMsg()}});
+    setTimeout(()=>{if(!chatOpen)document.getElementById('fabNotif').style.display='block'},3000);
+    fetch('https://saloon-backend-so2b.onrender.com/ping').catch(()=>{});
+  });
+</script>
+</body>
 </html>
